@@ -1,0 +1,101 @@
+/**
+ * 提示
+ */
+
+.notice-tip{
+  height: 40px;
+  background-color: rgba(#303030,0.7);
+  line-height: 40px;
+  color: #fff;
+  font-size: 12px;
+  position: fixed;
+  width: 100%;
+  webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  z-index: 999;
+  top:0;
+  text-align: center;
+}
+.tip-warn{
+  @include anmi-em(38, 38, "icon_tip.png", 0, 0);
+  @include position-point(50%, false, false, 20px);
+  @include margin-point(-9px, false, false, false);
+}
+.tip-close {
+  position: absolute;
+  right: 20px;
+  color: #fff;
+  font-size: 14px;
+}
+
+.icon-notice {
+  height: 40px;
+  background-image: url("../../img/notice.png");
+  background-repeat: no-repeat;
+  background-color: #ffb330;
+  background-position: 6px 6px;
+  line-height: 40px;
+  position: absolute;
+  width: 40px;
+}
+
+.violent-hint{
+  display: table;
+  position: relative;
+  width: 100%;
+  text-align: center;
+  height: 52px;
+  background-color: rgba(white, 0.8);
+  .icon-container{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    width: 36px;
+    height: 36px;
+    padding: 0 8px 0 18px;
+    .base{
+      display: inline-block;
+      width: 36px;
+      height: 36px;
+      background-size: contain;
+      background-position: center;
+    }
+    .alert{
+      @extend .base;
+      background-image: url($imageUrl + 'hint-alert.png')
+    }
+    .danger{
+      @extend .base;
+      background-image: url($imageUrl + 'hint-danger.png')
+    }
+  }
+  .hint-content{
+    display: table-cell;
+    width: 65%;
+    padding: 0 0 0 10px;
+    text-align: left;
+    vertical-align: middle;
+    .title{
+      color: #333;
+      font-size: 14px;
+      display: table-row;
+      height: 20px;
+      line-height: 20px;
+    }
+    .info{
+      color: #a9a9a9;
+      font-size: 12px;
+      display: table-row;
+      height: 20px;
+      line-height: 20px;
+    }
+  }
+  .hint-close{
+    display: table-cell;
+    float: right;
+    clear: both;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 5px 15px;
+  }
+}

@@ -1,0 +1,455 @@
+/*	open.scss */
+.position-relative{
+  position:relative;
+  height:100%;
+}
+
+.OpenIndexContainer{
+	background:$openDefaultColor;
+	color:$white;
+	height:100%;
+	display:relative;
+	text-align: center;
+    .bg-banner {
+      background-image: url($imageUrl + 'header-banner.png');
+      background-size: 100%;
+      background-repeat: no-repeat;
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      top: 0;
+      left: 0;
+      z-index: 99;
+    }
+    &.overflow-scroll{
+      overflow:scroll;
+    }
+		.mapBg{
+			background: url("../../../img/openIndexBg.png") no-repeat center;
+			background-size: contain;
+			height:40%;
+			width: 100%;
+		}
+		.subscript{
+			width:80%;
+			text-align: center;
+			line-height: 1.5em;
+			margin:10% auto;
+		}
+		a{
+			color:$white;
+		}
+		.colorfulBg{
+			cursor:pointer;
+			margin-top:10% auto;
+			background: url("../../../img/colorfulBorder.png") no-repeat center;
+			background-size:contain;
+			line-height:3em;
+			height:3em;
+			width:50%;
+			text-align:center;
+			margin:10% auto;
+		}
+		.img{
+      height: 80%;
+			display:block;
+      background: url("../../../img/thumbnail.jpg") no-repeat center;
+      background-size:contain;
+			margin: 5px auto;
+			border-radius: 2%;
+		}
+		.white-border-btn{
+			background:url("../../../img/white-border.png") no-repeat center;
+			background-size: contain;
+			line-height: 2.5em;
+			height: 2.5em;
+			text-align: center;
+			display:inline-block;
+			width: 8em;
+			cursor:pointer;
+		}
+		.title{
+			line-height: 2.5em;
+			height: 2.5em;
+			font-size:1.1em;
+			display:inline-block;
+		}
+		.header{
+			height:12%;
+			width:100%;
+			position:relative;
+			.white-border-btn{
+				position:absolute;
+				top:50%;
+				margin-top:-1.25em;
+				left:65%;
+			}
+			.title{
+				position:absolute;
+				right:35%;
+				top:50%;
+				margin-top:-1.25em;
+			}
+		}
+		.footer{
+			height:18%;
+			width:100%;
+		}
+		.content{
+			height:70%;
+			width:100%;
+		}
+    .thumbnail-bg{
+      background: url("../../../img/thumbnail.jpg") no-repeat;
+      background-size:100%;
+      width:726px;
+      height:524px;
+    }
+}
+
+
+.indexContainer{
+	width: 100%;
+	height: 30px;
+	margin: auto;
+	text-align: center;
+	position:absolute;
+	bottom:5px;
+  .dot{
+  	width: 8px;
+  	height: 8px;
+  	border-radius: 8px;
+  	background:rgba($white,0.3);
+  	display: inline-block;
+  	margin: auto 5px;
+  	&.actived{
+  		color:#57b9ff;
+  		width: 16px;
+  		height: 16px;
+  		border-radius: 16px;
+  		background:$white;
+  		text-align: center;
+  		display: inline-block;
+  		margin: auto 5px;
+  		line-height:16px;
+  	}
+  }
+}
+
+.navbar{
+  transition: opacity .5s ease .5s;
+  opacity: 1;
+  &.opacity{
+    opacity: 0;
+    transition: opacity .5s ease;
+  }
+	position:absolute;
+	bottom:0px;
+	width:100%;
+	background:#51c4dd;
+	text-align:center;
+	color:white;
+	cursor:pointer;
+  z-index: 3;
+    .bar-item{
+      display: inline-block;
+      width: 34%;
+      height: 52px;
+    	cursor:pointer;
+      margin: 0px auto;
+      &.add-project-action{
+        border: 2px solid #8de8fd;
+        border-radius: 29px;
+        bottom: 0px;
+        background: #51c4dd;
+        height: 56px;
+        left: 50%;
+        margin-left: -29px;
+        position: absolute;
+        width: 56px;
+      }
+      &:first-child{
+        float: left;
+      }
+      &:last-child{
+        float: right;
+      }
+    }
+    .icon-base{
+      margin:2px auto 2px;
+      width: 28px;
+      height: 28px;
+    }
+    .add-project-icon{
+      @extend .icon-base;
+			background:url('../../../img/add-project-icon.png') no-repeat center;
+      background-size: 100%;
+      &:active{
+        background-image: url('../../../img/add-project-icon.png')
+      }
+		}
+    .project-list-icon{
+      @extend .icon-base;
+			background:url('../../../img/project-list-icon.png') no-repeat center;
+      background-size: 100%;
+      &:active{
+        background-image: url('../../../img/project-list-icon-active.png')
+      }
+		}
+    .rank-list-icon{
+      @extend .icon-base;
+			background:url('../../../img/rank-list-icon.png') no-repeat center;
+      background-size: 100%;
+      &:active{
+        background-image: url('../../../img/rank-list-icon-active.png')
+      }
+		}
+		.icon-label{
+			margin: auto;
+      font-size: 10px;
+      line-height: 10px;
+      height: 10px;
+		}
+    .active{
+      .icon-label{
+        color: #ffb555;
+      }
+      .rank-list-icon{
+        background-image: url('../../../img/rank-list-icon-active.png')
+      }
+      .project-list-icon{
+        background-image: url('../../../img/project-list-icon-active.png')
+      }
+      .add-project-icon{
+        background-image: url('../../../img/add-project-icon.png')
+      }
+    }
+}
+
+.position-static{
+  position:static;
+}
+.position-relative{
+  position: relative;
+}
+.pa-100 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.field {
+  border: 1px solid $white;
+  height: 30px;
+  font-size: 15px;
+  color: $white;
+  border-radius: 20px;
+  text-align: center;
+}
+.step {
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 50%;
+  margin: 0 5px;
+}
+.icon-drop {
+  line-height: 30px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+
+.open-wrap {
+  @extend .pa-100;
+  background-image: -webkit-linear-gradient(to top, #57b9ff, #6cf);
+  background-image: linear-gradient(to top, #57b9ff, #6cf);
+  font-size: 15px;
+
+  .bg-banner {
+    background-image: url($imageUrl + 'header-banner.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    top: 0;
+    left: 0;
+    z-index: 99;
+  }
+
+  .main {
+    position: relative;
+    background: url($imageUrl + 'bg-world.png') no-repeat center 30px;
+    background-size: 100%;
+    height: 82%;
+    overflow: hidden;
+
+    .search-box {
+      position: fixed;
+      top: 50%;
+      width: 100%;
+      text-align: center;
+
+      input {
+        @extend .field;
+        border-width: 2px;
+        width: 94%;
+        background: none;
+        box-sizing: border-box;
+        padding: 0 40px 0 10px;
+
+        &::-webkit-input-placeholder{
+          color: $white;
+        }
+        &:focus::-webkit-input-placeholder{
+          color: $white;
+        }
+      }
+      .focus-input {
+        text-align: left;
+      }
+      .dropdown-arrow {
+        color: $white;
+        height: 40px;
+        position: absolute;
+        right: 2%;
+        top: -5px;
+        width: 15%;
+        vertical-align: middle;
+        cursor: pointer;
+      }
+    }
+
+    .input-error {
+      input {
+        &::-webkit-input-placeholder{color: #f00;}
+        &:focus::-webkit-input-placeholder{
+          color: $white;
+        }
+      }
+    }
+  }
+
+  .operate {
+    //position: absolute;
+    width: 100%;
+    margin-top: 3%;
+    height: 15%;
+
+    .btns {
+      text-align: center;
+
+      button {
+        @extend .field;
+        width: 36%;
+        margin: 0 10px;
+        box-shadow: 0px 2px 0 1px #3ab2ff;
+      }
+      button.disabled {
+        opacity: 0.5;
+      }
+      .active {
+        color: #ffd202;
+        border-color: #ffd202;
+      }
+    }
+    .steps {
+      margin-top: 15px;
+      text-align: center;
+
+      strong {
+        @extend .step;
+        color: #57b9ff;
+        font-family: sans-serif;
+        background: $white;
+        width: 16px;
+        font-size: 14px;
+        font-weight: 400;
+      }
+      span {
+        @extend .step;
+        color: #57b9ff;
+        background: #a9dbff;
+        height: 8px;
+        width: 8px;
+      }
+    }
+  }
+
+  .tips {
+    height: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-size: 13px;
+    color: #fff;
+    overflow: hidden;
+    padding: 10px 0;
+    background: rgba(0, 0, 0, 0.6);
+
+    p {
+      display: inline-block;
+      padding-left: 26px;
+      line-height: 20px;
+      background: url($imageUrl + 'icon_tip.png') no-repeat 7px center/16px;
+    }
+
+    button {
+      padding: 0 10px;
+      border: 1px solid #44f8ff;
+      color: #44f8ff;
+      margin-left: 5px;
+      border-radius: 10px;
+      height: 20px;
+      line-height: 20px;
+    }
+
+    .close {
+      position: absolute;
+      right: 0;
+      top: 0;
+      color: #fff;
+      width: 24px;
+      height: 100%;
+      text-align: right;
+      cursor: pointer;
+      background: url($imageUrl + 'active-close.png') no-repeat right center/24px;
+    }
+  }
+}
+
+.open-third {
+  .main {
+    .search-box {
+      top: 10px;
+    }
+
+    .projects {
+      padding-top: 44px;
+
+      ul {
+        color: $white;
+        overflow-x: hidden;
+        //position: absolute;
+        width: 100%;
+        height: 80%;
+
+        li {
+          padding: 12px 22px;
+          border-bottom: 1px solid #9dcef1;
+          cursor: pointer;
+        }
+        li.active {
+          background: rgba(52, 154, 226, 0.5);
+        }
+      }
+
+      .data-status {
+        color: $white;
+      }
+    }
+  }
+}

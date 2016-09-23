@@ -1,0 +1,104 @@
+.tabs-cards{
+  position: fixed;
+  bottom: 0px;
+  display: table;
+  width: 100%;
+  text-align: center;
+  border-top: 1px solid #ececec;
+  padding: 4px 0;
+  background: white;
+  .tabs-card{
+    width: 30%;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    .icon-default{
+      width: 24px;
+      height: 24px;
+      margin: 3px auto;
+    }
+    .label{
+      font-size: 12px;
+    }
+  }
+}
+
+
+.tab-sprite, .tab-collaboration-acitve, .tab-collaboration, .tab-index, .tab-report {
+  background-image: url($imageUrl + 'tab-sprite.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+
+.active {
+  .label{
+    color: #ffa42d;
+  }
+  .tab-collaboration {
+    background-position: 0 0;
+  }
+
+  .tab-index {
+    background-position: 0 40%;
+  }
+
+  .tab-report {
+    background-position: 0 80%;
+  }
+}
+
+
+.tab-collaboration {
+  background-position: 0 20%;
+}
+
+.tab-index {
+  background-position: 0 60%;
+}
+
+.tab-report {
+  background-position: 0 99.99%;
+}
+
+
+.tab-widget{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 5px;
+  margin: 10px 0;
+  .tab-table{
+    display: table;
+    border: 1px solid #ffa52d;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 25px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    .tab-row{
+      display: table-row;
+      .tab-cell{
+        display: table-cell;
+        text-align: center;
+        padding: 10px 0;
+        border-right: 1px solid #ffa52d;
+        cursor: pointer;
+        &.active{
+          background-color: #ffa52d;
+          color: #fff;
+        }
+        &:first-child{
+          border-top-left-radius:25px;
+          border-bottom-left-radius:25px;
+        }
+        &:last-child{
+          border-right: 0;
+          border-top-right-radius:25px;
+          border-bottom-right-radius:25px;
+        }
+      }
+    }
+  }
+}

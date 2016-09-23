@@ -1,0 +1,53 @@
+/*_back-btn.scss*/
+
+/*.suspended {
+  position: fixed;
+  bottom: 8rem;
+  right: 12px;
+  height: 4rem;
+  width: 4rem;
+  line-height: 4rem;
+  border-radius: 5px;
+  background-color: grey;
+  opacity: 0.7;
+  color: orange;
+  text-align: center;
+  cursor: pointer;
+  z-index: 2;
+}
+
+a.suspended {
+  text-decoration: none;
+}*/
+
+@media screen and (min-width: 480px) {
+  .suspended {
+    position: fixed;
+    bottom: 7rem;
+    right: 12px;
+    height: 3rem;
+    width: 3rem;
+    line-height: 3rem;
+    border-radius: 5px;
+    background-color: grey;
+    opacity: 0.7;
+    color: orange;
+    text-align: center;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  a.suspended {
+    text-decoration: none;
+  }  
+}
+
+@media screen and (max-width: 479px) {
+  .iconfont-back {
+    &:before {
+      color:#fff;
+      font-size: 1.6rem;
+      content: '';
+    }
+  }
+}

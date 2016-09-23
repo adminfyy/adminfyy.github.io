@@ -1,0 +1,8 @@
+//persmission-403
+.permission-403 {
+  @include statusCodeCss('notfound.png')
+}
+
+.notfound-404 {
+  @include statusCodeCss('not-found.png')
+}

@@ -1,0 +1,26 @@
+/*_project_version_edit.scss*/
+.required>label:before {
+  content: '* ';
+  color: #DF3B3B;
+  right: 2rem;
+}
+
+.role-selector {
+  .modify-link-color {
+    text-align: center;
+    line-height: 4rem;
+    min-height: 4rem;
+    border-bottom: 1px solid #F2F2F2;
+    cursor: pointer;
+    &:last-child {
+      border-bottom: none;
+    }
+    a {
+      color: #000;
+      display: block;
+    }
+    span {
+      margin-left: 0;
+    }
+  }
+}

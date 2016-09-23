@@ -1,0 +1,60 @@
+@charset "UTF-8";
+/**
+ * 统一样式定制
+ */
+//边框颜色
+$borderColor:#EBEBEB;
+//搜索颜色
+$searchBackColor:#F6F6F6;
+//字体颜色
+$contentFontColor: #333333;
+$tipColor: #959595;
+$bodyColor:#F5F5F5;
+$tabActiveColor:#fbbc63;
+
+$activeColor:#0b97c4;
+
+$memberColor:#EFFBFF;
+
+$white:#fff;
+$gray: #CCCCCC;
+$green:#5ccb19;
+$greenRgb:rgb(90,206,24);
+$greenOpacity:#E6F1DF;
+
+$orange:#fba214;
+$orangeRgb:rgb(255,181,49);
+
+
+$blue:#14c3fd;
+$blueRgb:rgb(18,199,255);
+
+
+//列表上的正常，警告，异常，审核中的状态的颜色值
+$opacity:0.08;
+
+$normalColor:#86cd4d;
+$warnColor:#e5b600;
+$delayColor:#ff3c00;
+$applyColor:#777777;
+$errorColor:#ff5046;
+$easeInOutBack: cubic-bezier(.8, - 0.64, .22, 1.58);
+
+
+//tab上颜色变量
+
+
+$iconBgColor: #ececec;
+$iconBgColorActive: #ffe8cb;
+$iconBgColorMenuActive: #ffa42d;
+$iconBgColorMenuHover: #fb8c09;
+
+$taskProgressColor:#ffca00;
+$taskCloseColor:#86cd4d;
+
+//文档界面颜色
+
+$unsupported: #666666;
+
+//开通页面相关颜色
+$openDefaultColor:#57b9ff;

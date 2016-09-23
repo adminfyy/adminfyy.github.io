@@ -1,0 +1,225 @@
+.g-milestone {
+  height: 100%;
+  background-color: #fff;
+  .list-table {
+    display: table;
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+  .js-m-content .project-version-group .list-table.active{
+    background-color: #ffb657;
+    span{
+      color: #fff;
+    }
+    a{
+      color: #fff;
+    }
+    div{
+      color: #fff;
+    }
+  }
+  .list-row {
+    display: table-row;
+    .m-title {
+      color: #333;
+      font-size: 15px;
+      float: left;
+      @include ellipsis(200px);
+    }
+    .m-num {
+      float: left;
+    }
+    .m-date {
+      float: right;
+      margin-right: 12px;
+      a{
+        color: #666;
+        &.m-calendar{
+          pointer-events: none;
+        }
+      }
+      .btn-click {
+        padding: 3px 10px;
+        border-radius: 10px;
+        color: #666;
+        border: 1px solid #666;
+        margin-right: 5px;
+      }
+      .btn-check,
+      .see-gress {
+        padding: 3px 10px;
+        border-radius: 10px;
+        border: 1px solid #FFBE7A;
+        color: #FFBE7A;
+      }
+      .see-gress {
+        padding: 3px 10px;
+        border-radius: 10px;
+        border: 1px solid #FFBE7A;
+        color: #FFBE7A;
+
+        a {
+          padding: 0;
+          color: #FFBE7A;
+          border: none;
+          margin-right: 0;
+        }
+      }
+      .btn-sure {
+        padding: 3px 20px;
+        border-radius: 10px;
+        border: 1px solid #FFBE7A;
+        color: #FFBE7A;
+      }
+    }
+    .tar {
+      text-align: right;
+      padding-right: 12px;
+    }
+  }
+  .list-cell {
+    display: table-cell;
+    &.s-title {
+      font-size: 18px;
+      color: #666;
+      padding: 11px 0 7px;
+    }
+    &.list-border {
+      border-bottom: 1px solid #c0c0c0;
+      font-size: 12px;
+      padding: 5px 0 10px;
+      color: #666;
+    }
+    &.list-first {
+      padding: 10px 0 10px;
+    }
+    &.m-done {
+      border-bottom: 1px solid #c0c0c0;
+      font-size: 12px;
+      color: #666;
+      padding: 10px 0;
+    }
+    &.list-btn {
+      width: 80px;
+      cursor: pointer;
+    }
+    .btn-create {
+      text-align: center;
+      margin-right: 15px;
+      padding: 3px;
+      background-color: #FFA52D;
+      border-radius: 25px;
+      cursor: pointer;
+      color: #fff;
+    }
+    .list-line {
+      position: absolute;
+      width: 1px;
+      background-color: #cfcfcf;
+      height: 100px;
+      margin-left: 25px;
+    }
+    .m-img-cur {
+      cursor: pointer;
+      @include anmi-em(60, 60, "m_cur.png", 0, 0);
+      @include position-point(50%, false, false, 50%);
+      @include margin-point(-12px, false, false, -15px);
+      transition: all 500ms ease;
+      transform-style: preserve-3d;
+    }
+    .rotate180 {
+      transform: rotate(180deg);
+    }
+    .m-img-undo {
+      cursor: pointer;
+      @include anmi-em(60, 60, "m_undo.png", 0, 0);
+      @include position-point(50%, false, false, 50%);
+      @include margin-point(-12px, false, false, -15px);
+      transition: all 500ms ease;
+      transform-style: preserve-3d;
+    }
+    .m-img-done {
+      cursor: pointer;
+      @include anmi-em(60, 60, "m_done.png", 0, 0);
+      @include position-point(50%, false, false, 50%);
+      @include margin-point(-12px, false, false, -15px);
+      transition: all 500ms ease;
+      transform-style: preserve-3d;
+    }
+  }
+  .m-tag {
+    width: 50px;
+    vertical-align: top;
+    position: relative;
+  }
+  // 状态判断
+  .m-waiting {
+    .m-img-status {
+      @include anmi-em(36, 36, "m_status_waiting.png", 0, 0);
+      @include position-point(50%, false, false, 50%);
+      @include margin-point(-8px, false, false, -9px);
+    }
+    .m-status {
+      color: #ff5046;
+      font-size: 10px;
+      float: right;
+      margin-right: 12px;
+    }
+  }
+  .m-checked {
+    .m-img-status {
+      @include anmi-em(50, 50, "m_status_checked.png", 0, 0);
+      @include position-point(50%, false, false, 50%);
+      @include margin-point(-11px, false, false, -12px);
+    }
+    .m-status {
+      color: #96cd4d;
+      font-size: 10px;
+      float: right;
+      margin-right: 12px;
+    }
+  }
+  .m-checking {
+    .m-img-status {
+      @include anmi-em(36, 36, "m_status_checking.png", 0, 0);
+      @include position-point(50%, false, false, 50%);
+      @include margin-point(-8px, false, false, -9px);
+    }
+    .m-status {
+      color: #ffca00;
+      font-size: 10px;
+      float: right;
+      margin-right: 12px;
+    }
+  }
+  .m-done {
+    .m-status-done {
+      @include anmi-em(36, 36, "m_status_done.png", 0, 0);
+      @include position-point(50%, false, false, 50%);
+      @include margin-point(-9px, false, false, -9px);
+    }
+    .m-status {
+      color: #666;
+      font-size: 12px;
+      float: right;
+      margin-right: 12px;
+    }
+  }
+  .btn-more-label {
+    text-align: center;
+    color: $tipColor;
+    .btn-primary {
+      margin-top: 15px;
+      padding: 5px 15px;
+      border-radius: 10px;
+      border: 1px solid $tipColor;
+    }
+  }
+  .m-active{
+    -webkit-animation: milestoneShow .5s ease-out;
+    animation: milestoneShow .5s ease-out;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+  }
+}

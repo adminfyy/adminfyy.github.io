@@ -1,0 +1,95 @@
+// 项目列表搜索页面
+.projects-search-page {
+  // 头部的搜索框
+  .projects-search {
+    background-color: #fff;
+    border-bottom: 1px solid #EFEFEF;
+    .search-content {
+      padding: 10px;
+      .search-right {
+        width: 90%;
+      }
+      .back {
+        &:before {
+          top: 18px;
+        }
+        a {
+          position: absolute;
+          top: 10px;
+          padding:18px 10px 18px 18px;
+        }
+      }
+      .search-label {
+        background-color: #EFEFEF;
+        width: 100%;
+        padding: 18px 30px 18px 30px;
+      }
+      .icon-search {
+        margin-top: -4px;
+      }
+    }
+  }
+  // 搜索内容
+  .projects-search-content {
+    .project-card {
+      overflow: initial;
+    }
+    // 搜索关键词历史列表
+    .projects-search-keys-history {
+      overflow-y: auto;
+      .projects-search-keys-items {
+        padding-left: 15px;
+        .projects-search-keys-item {
+          cursor: pointer;
+          padding: 20px 0;
+          font-size: 16px;
+          border-bottom: 1px solid #eeeeee;
+        }
+      }
+      //清空历史关键词
+      .projects-search-keys-clear {
+        text-align: center;
+        margin: 12px 0;
+        color: #666;
+        font-size: 14px;
+        cursor: pointer;
+      }
+    }
+    // 覆盖 overflow 属性
+    .project-card{
+      .info{
+        .title{
+          overflow: visible;
+          text-overflow: initial;
+        }
+        .director{
+          overflow: visible;
+          text-overflow: initial;
+        }
+      }
+    }
+    .panel-group{
+      background-color: #fff;
+    }
+    .search-tips{
+      height:35px;
+      line-height: 35px;
+      background-color: #A2A2A2;
+      color:#fff;
+      font-size: 14px;
+      padding-left: 12px;
+      .search-key{
+        display: inline-block;
+        vertical-align:middle;
+        @include ellipsis();
+        max-width: 35%;
+      }
+    }
+    .data-none{
+       .msg-image{
+         margin-top: 0;
+         top:35%;
+       }
+    }
+  }
+}

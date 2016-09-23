@@ -1,0 +1,292 @@
+.common-bc {
+  background: rgba(0, 0, 0, 0.2);
+  color: $white;
+}
+@mixin bg-header($n) {
+  background: url($imageUrl + 'bg-header-' + $n + '.png') no-repeat left 0;
+  background-size: cover;
+}
+
+.project-header {
+  position: relative;
+  .bg-header-1 {
+    @include bg-header(1);
+  }
+  .bg-header-2 {
+    @include bg-header(2);
+  }
+  .bg-header-3 {
+    @include bg-header(3);
+  }
+}
+
+.page-info {
+  display: table;
+  width: 100%;
+  padding-top: 8px;
+  @include screen_480_767 {
+    padding-top: 10px;
+  }
+
+  .back {
+    position: absolute;
+    a {
+      @include border-radius(16);
+      @include screen_320 {
+        padding: 6px 6px 6px 22px;
+      }
+      @include screen_375 {
+        padding: 6px 6px 6px 22px;
+      }
+      @include screen_480_767 {
+        @include border-radius(18);
+        padding: 10px 10px 10px 24px;
+      }
+      padding: 8px 8px 8px 24px;
+      color: $white;
+      margin-left: 12px;
+      background: url($imageUrl + "icon-arrow.png") no-repeat rgba(0, 0, 0, 0.22);
+      display: inline-block;
+      background-size: 16%;
+      background-position: 20% 50%;
+    }
+  }
+
+  .page-title {
+    width: 100%;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    p {
+      @include border-radius(16);
+      display: inline-block;
+      background: rgba(0, 0, 0, 0.1);
+      color: $white;
+      padding: 3px 12px;
+      font-size: 18px;
+      text-align: center;
+    }
+  }
+
+  .goto-index {
+    position: absolute;
+    right: 0;
+    a {
+      @include screen_320 {
+        width: 30px;
+        height: 30px;
+      }
+      @include screen_375 {
+        width: 30px;
+        height: 30px;
+      }
+      @include screen_480_767 {
+        width: 38px;
+        height: 38px;
+      }
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      background: url($imageUrl + "icon-index.png") no-repeat center;
+      background-size: 60%;
+      background-color: rgba(0, 0, 0, 0.2);
+      border-radius: 50%;
+      margin-right: 12px;
+    }
+
+  }
+}
+
+.project-info-wrap {
+  @include screen_320 {
+    margin-top: 6px;
+    padding-bottom: 10px;
+  }
+  @include screen_375 {
+    margin-top: 6px;
+    padding-bottom: 10px;
+  }
+  @include screen_480_767 {
+    margin-top: 12px;
+  }
+  color: $white;
+  font-size: 12px;
+  margin-top: 8px;
+  overflow: hidden;
+  padding-bottom: 20px;
+
+  .project-logo {
+    cursor: pointer;
+    @include border-radius(12);
+    @include screen_320 {
+      width: 50px;
+      height: 50px;
+    }
+    @include screen_375 {
+      width: 50px;
+      height: 50px;
+    }
+    @include screen_480_767 {
+      @include border-radius(15);
+      width: 70px;
+      height: 70px;
+    }
+    width: 55px;
+    height: 55px;
+    margin: 3px 6% 0 8%;
+    border: 1px solid #ecf868;
+    float: left;
+
+    img {
+      @include border-radius(12);
+      @include screen_320 {
+        width: 50px;
+        height: 50px;
+      }
+      @include screen_375 {
+        width: 50px;
+        height: 50px;
+      }
+      @include screen_480_767 {
+        width: 70px;
+        height: 70px;
+      }
+      width: 55px;
+      height: 55px;
+    }
+  }
+  .detail {
+    width: 42%;
+    float: left;
+    margin-top: 5px;
+    @include ellipsis();
+
+    > div {
+      @include screen_320 {
+        padding-bottom: 4px;
+      }
+      @include screen_375 {
+        padding-bottom: 4px;
+      }
+      @include screen_480_767 {
+        font-size: 14px;
+      }
+      padding-bottom: 8px;
+    }
+
+    .project-name {
+      @media screen and (min-width:540px){
+        font-size: 17px;
+        width:390px
+      }
+      @media screen and (min-width:521px) and (max-width:539){
+        font-size: 17px;
+        width:360px
+      }
+      @media screen and (min-width:480px) and (max-width:520px) {
+        font-size: 14px;
+        width:330px
+      }
+      @include screen_479 {
+        font-size: 16px;
+        width:260px;
+      }
+
+      @include screen_375 {
+        font-size: 15px;
+        width:225px;
+      }
+      @include screen_320 {
+        font-size: 12px;
+        width:220px;
+      }
+
+    }
+    a{
+      color: #fff;
+      pointer-events: none;
+    }
+
+  }
+  .v-detail {
+    width: auto;
+  }
+  .follow-container {
+    float: right;
+    width: 22%;
+    padding: 15px 15px 0 0;
+    &.follow-project-info{
+      padding: 5px 15px 0 0;
+    }
+    .sub-btn-follow {
+      text-align: center;
+      cursor: pointer;
+
+      > div {
+        @include screen_480_767 {
+          font-size: 15px
+        }
+        color: $white;
+        display: inline-block;
+        width: 100%;
+        background: #ffa42d;
+        border: 1px solid #ffa42d;
+        padding: 5% 0;
+        border-radius: 15px;
+      }
+
+      .off {
+        background: none;
+        border: 1px solid $white;
+      }
+    }
+  }
+}
+
+.detail-header {
+  color: #333;
+  position: relative;
+  background-color: #fff;
+  .detail-page-info {
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+    border-bottom: 1px solid #d9d9d9;
+    .back {
+      position: absolute;
+
+      a {
+        padding: 0 6px 0 30px;
+        font-size: 15px;
+      }
+      a:active {
+        color: #fdaa40;
+      }
+    }
+
+    .page-title {
+      p {
+        font-size: 18px;
+      }
+    }
+
+    .goto-index {
+      position: absolute;
+      right: 15px;
+      height: 24px;
+      top: 0;
+      width: 24px;
+    }
+  }
+
+  .detail-info-wrap {
+    @include ellipsis();
+    border-bottom: 1px solid #d9d9d9;
+    padding: 0 38px;
+    font-size: 16px;
+    background: #f0eff5;
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+  }
+}

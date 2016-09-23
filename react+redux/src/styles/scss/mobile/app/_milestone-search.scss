@@ -1,0 +1,168 @@
+/**
+ * @desc: 文档搜索
+ */
+
+.milestone-result {
+  .result-title {
+    padding: 10px 15px;
+    display: flex;
+    border-bottom: 1px solid #d9d9d9;
+    font-size: 18px;
+  }
+  .milestone-list {
+    overflow-y: auto;
+    overflow-x: hidden;
+    li {
+      position: relative;
+      padding: 10px 0 10px 32px;
+      margin-left: 15px;
+      border-bottom: 1px solid #d9d9d9;
+      display: flex;
+      cursor:pointer;
+    }
+  }
+  .no-doc {
+    width: 120px;
+    height: 160px;
+    color: #666;
+    margin: 36% auto 0;
+    background: url($imageUrl + 'not-found.png') no-repeat center 0;
+    background-size: 100%;
+      .txt-center {
+        padding-top: 140px;
+        margin-top: -36%;
+      }
+  }
+}
+
+.mile-stone-dialog .dialog-confirm {
+  border: none;
+  width: 100%;
+  left: 0;
+  top: 0;
+  &.absolute{
+    position: absolute;
+  }
+}
+
+
+.mile-stone-dialog
+.dialog-confirm-foot {
+  overflow: hidden;
+  width: 90%;
+  margin: 0 auto;
+  padding: 0 10px 10px 10px;
+  button {
+    &:active {
+      border: 1px solid $activeColor;
+    }
+    border-radius: 0.5rem;
+    float: left;
+    width: 42%;
+    margin: 0 4%;
+    text-align: center;
+    background-color: #FFB331;
+    color: white;
+  }
+  .dialog-confirm-confirm-box{
+    button{
+      background-color: #fe9200;
+      color: $white;
+    }
+  }
+  .dialog-confirm-cancel-box{
+    button{
+      background-color: #fff;
+      color: #FFB331;
+      border: 1px solid #FFB331;
+      font-weight: normal;
+    }
+  }
+}
+
+.mile-stone-notify-dialog .dialog-notifytype {
+  z-index: 4;
+  position: fixed;
+  @include screen_479 {
+    width: 100%;
+    left: 0;
+    bottom: 0;
+  }
+  @include screen_480_767() {
+    width: 70%;
+    left: 15%;
+    bottom: initial;
+  }
+  @include screen_768_959() {
+    width: 60%;
+    left: 20%;
+  }
+  @include screen_960_1199() {
+    width: 50%;
+    left: 25%;
+  }
+  @include screen_1200() {
+    width: 44%;
+    left: 28%;
+  }
+}
+.reviewState {
+	position: absolute;
+    right: 2.5rem;
+}
+.reviewDelBtn {
+	background-color: #fff;
+    color: #FFB331;
+    border: 1px solid #FFB331;
+}
+.reviewCenterBtn {
+	background-color: #FFB331;
+    color: white;
+    font-size: 14px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    font-family: '\9ED1\4F53';
+}
+.reviewBottom{
+	//margin-bottom: 8rem;
+}
+.reviewInfo > ul > li {
+    line-height: 2rem;
+    min-height: 2rem;
+}
+.review-notifytype{
+	//border-top: 1px solid #DBDBDB;
+	z-index:0;
+	position:initial;
+	@include screen_479 {
+    width: 100%;
+    left: 0;
+	}
+	@include screen_480_767() {
+    width: 100%;
+    left: 0;
+	}
+	@include screen_768_959() {
+    width: 60%;
+    margin-left: 21%;
+	}
+	@include screen_960_1199() {
+    width: 50%;
+    margin-left: 25%;
+	}
+	@include screen_1200() {
+    width: 44%;
+    margin-left: 28%;
+	}
+	.dialog-notifytype-head {
+		background: #F0F0F0;
+		border-bottom: 0px solid #DBDBDB;
+	}
+}
+
+//里程碑审核的h5页面
+.milestone-review{
+  .version-detail-content{
+    margin:0
+  }
+}

@@ -1,0 +1,113 @@
+.project-index{
+  overflow: auto;
+  background: #f4f4f4;
+}
+.card-roadmap-version{
+  display: table;
+  width: 100%;
+  background: white;
+  &:not(:first-child){
+    margin: 0 auto 11px;
+  }
+  &:last-child{
+    margin: 0 auto;
+  }
+  .period-and-status{
+    height: 35px;
+    line-height: 35px;
+    vertical-align: middle;
+    text-align: center;
+    margin: 0 10px;
+    border-bottom: 1px solid #ececec;
+    .period{
+      display: table-cell;
+      float: left;
+      text-align: left;
+      font-weight: bold;
+      .content{
+        display: inline-block;
+        max-width: 20rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+    .status{
+      text-align: right;
+      display: table-cell;
+      float: right;
+      max-width: 4rem;
+      &.status-0{ color: #ffa42d; }
+      &.status-1{ color: #86cd4d; }
+    }
+  }
+  .detail{
+    display: table-row;
+    cursor: pointer;
+    font-size: 0.9rem;
+    .detail-content{
+      display: table-cell;
+      padding: 13px 12px;
+      color: #999;
+      :not([class]){
+        word-break: break-all;
+        word-wrap: break-word;
+      }
+    }
+  }
+}
+.container{
+  display: table;
+  width: 100%;
+  .title{
+    display: table-row;
+    clear: both;
+    position: relative;
+    .label{
+      display: table-cell;
+      float: left;
+      height: 36px;
+      line-height: 36px;
+      padding: 0 0 0 10px;
+    }
+    .history{
+      display: table-cell;
+      float: right;
+      height: 36px;
+      line-height: 36px;
+      position: relative;
+      padding: 0 12px 0;
+      cursor: pointer;
+      color: #3f81d2;
+    }
+  }
+  .alert{
+    display: table;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    clear: both;
+    background: white;
+    height: 144px;
+    .image-container{
+      display: table-row;
+      width: 76px;
+      height: 76px;
+      .image-alert{
+        display: table-cell;
+        border: 20px solid white;
+        background: url($imageUrl + 'alert.png') no-repeat;
+        background-size: contain;
+        background-position: center;
+        width: 76px;
+        height: 76px;
+      }
+    }
+
+    .label{
+      display: table-row;
+      text-align: center;
+      vertical-align: middle;
+    }
+  }
+}
