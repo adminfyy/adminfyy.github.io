@@ -12,10 +12,10 @@ body{
 }
 
 .page-header .btn {
-	border: 2px solid grey;
+	border: .3rem solid grey;
 	padding: 1rem 1rem;
-	border-radius: 5%;
 	-webkit-transition: .5s;
+	box-sizing: border-box;
 }
 .btn:hover {
 	color: pink;
@@ -30,31 +30,10 @@ a {
 	margin: 0px auto;
 	text-align: center;
 }
-.li{
-	animation: strench 10s,blink .5s 10;
+li{
 	overflow: hidden;
 	white-space: nowrap;
 }
-
-@keyframes strench {
-	from {
-		width: 0px;
-	}
-
-	to {
-		width: 300px;
-	}
-}
-@keyframes blink {
-	from {
-		border-right-color: black;
-	}
-
-	to {
-		border-right: 1px solid white;
-	}
-}
-
 li.done {
 	text-decoration: line-through;
 }
