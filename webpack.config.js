@@ -1,16 +1,21 @@
  const webpack = require('webpack');
+ const htmlWebpackPlugin = require('html-webpack-plugin');
 
  module.exports = {
      entry: './src/main.js',
      output: {
          path: './dist',
-         filename: 'app.bundle.js',
+         filename: `[name].js`,
      },
      module: {
          loaders: [{
              test: /\.js$/,
              exclude: /node_modules/,
              loader: 'babel-loader'
+         },{
+            test: /\.css$/,
+            exclude: /node_modules/,
+            loader: 'css-loader'
          }]
      },
      plugins: [
@@ -21,6 +26,11 @@
             output: {
                 comments: false
             }
+        }),
+        new htmlWebpackPlugin({
+            title: 'Why To Javascript',
+            template: 'index.html',
+            inject: true
         })
      ]
  }
