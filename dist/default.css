@@ -1,0 +1,39 @@
+body{
+	background: black;
+	opacity: .8;
+	font-size: 23px;
+	color: #ccc;
+ 	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.page-header{
+	padding: 5rem 4rem;
+	text-align: center;
+}
+
+.page-header .btn {
+	border: .3rem solid grey;
+	padding: 1rem 1rem;
+	-webkit-transition: .5s;
+	box-sizing: border-box;
+}
+.btn:hover {
+	color: pink;
+	border-radius: 25%;
+}
+a {
+	text-decoration: none;
+	color: white;
+}
+
+.site-footer {
+	margin: 0px auto;
+	text-align: center;
+}
+li{
+	overflow: hidden;
+	white-space: nowrap;
+}
+li.done {
+	text-decoration: line-through;
+}
