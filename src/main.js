@@ -1,5 +1,3 @@
 import { log } from './log';
-
-var adminlog = log('admin:');
-adminlog('this is the main.js file:');
-adminlog('this is the main.js file:');
+import * as style from './styles/default.css'
+console.log('this is main.js');

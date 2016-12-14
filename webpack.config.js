@@ -1,10 +1,10 @@
  const webpack = require('webpack');
  const htmlWebpackPlugin = require('html-webpack-plugin');
 
- module.exports = {
+ module.exports = webpackConfig = {
      entry: './src/main.js',
      output: {
-         path: './dist',
+         path: './doc',
          filename: `[name].js`,
      },
      module: {
@@ -19,6 +19,17 @@
          }]
      },
      plugins: [
+        new htmlWebpackPlugin({
+            title: 'Why To Javascript',
+            template: './src/index.html',
+            inject: true
+        })
+     ]
+ }
+ var __dev__ = false
+
+ if(__dev__){
+    webpackConfig.plugins.push(
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false,
@@ -26,11 +37,5 @@
             output: {
                 comments: false
             }
-        }),
-        new htmlWebpackPlugin({
-            title: 'Why To Javascript',
-            template: 'index.html',
-            inject: true
-        })
-     ]
+        }))
  }
