@@ -1,10 +1,11 @@
  const webpack = require('webpack');
  const htmlWebpackPlugin = require('html-webpack-plugin');
+ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
  module.exports = webpackConfig = {
      entry: './src/main.js',
      output: {
-         path: './doc',
+         path: './docs',
          filename: `[name].js`,
      },
      module: {
@@ -23,7 +24,10 @@
             title: 'Why To Javascript',
             template: './src/index.html',
             inject: true
-        })
+        }),
+        new CopyWebpackPlugin([{
+          from: './src/styles'
+        }])
      ]
  }
  var __dev__ = false

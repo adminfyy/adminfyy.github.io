@@ -48,12 +48,7 @@
 
 	var _log = __webpack_require__(1);
 
-	var _default = __webpack_require__(2);
-
-	var style = _interopRequireWildcard(_default);
-
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
+	__webpack_require__(2);
 	console.log('this is main.js');
 
 /***/ },
