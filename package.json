@@ -1,10 +1,9 @@
 {
   "name": "adminfyy",
   "version": "1.0.0",
-  "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\"",
-    "dev": "webpack-dev-server src/"
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "repository": {
     "type": "git",
@@ -25,6 +24,7 @@
     "css-loader": "^0.26.1",
     "html-webpack-plugin": "^2.24.1",
     "style-loader": "^0.13.1",
+    "cross-env": "^3.0.0",
     "webpack": "^1.14.0"
   }
 }

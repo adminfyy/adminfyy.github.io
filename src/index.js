@@ -1,6 +1,7 @@
-import { log } from './log';
-require("./styles/default.css");
 /**
 **  inside of the main.js
 **/
-console.log('this is main.js');
+
+import __debug from 'debug';
+const debug = __debug('_yyCoding: ');
+debug('this is main.js');

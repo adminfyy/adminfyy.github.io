@@ -3,43 +3,49 @@
  const CopyWebpackPlugin = require('copy-webpack-plugin');
 
  module.exports = webpackConfig = {
-     entry: './src/main.js',
+     entry: './src/index.js',
      output: {
          path: './docs',
-         filename: `[name].js`,
+         filename: "app.js",
      },
      module: {
-         loaders: [{
-             test: /\.js$/,
-             exclude: /node_modules/,
-             loader: 'babel-loader'
-         },{
-            test: /\.css$/,
-            exclude: /node_modules/,
-            loader: 'style-loader!css-loader'
-         }]
-     },
+        rules: [
+            {
+                test: /\.vue$/,
+                loader: 'vue-loader',
+                options: {
+                  loaders: {
+                    // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
+                    // the "scss" and "sass" values for the lang attribute to the right configs here.
+                    // other preprocessors should work out of the box, no loader config like this nessessary.
+                    'scss': 'vue-style-loader!css-loader!sass-loader',
+                    'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
+                  }
+                  // other vue-loader options go here
+                }
+            },
+            {
+                test: /\.js$/,
+                loader: 'babel-loader',
+                exclude: /node_modules/,
+                query: {
+                    presets: ['es2015']
+                }
+            },
+            {
+                test: /\.(png|jpg|gif|svg)$/,
+                loader: 'file-loader',
+                options: {
+                  name: '[name].[ext]?[hash]'
+                }
+            }
+        ]
+    },
      plugins: [
         new htmlWebpackPlugin({
             title: 'Why To Javascript',
             template: './src/index.html',
             inject: true
-        }),
-        new CopyWebpackPlugin([{
-          from: './src/styles'
-        }])
+        })
      ]
- }
- var __dev__ = false
-
- if(__dev__){
-    webpackConfig.plugins.push(
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false,
-            },
-            output: {
-                comments: false
-            }
-        }))
  }
