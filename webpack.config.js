@@ -4,7 +4,7 @@
  module.exports = {
      entry: './src/main.js',
      output: {
-         path: './dist',
+         path: './',
          filename: `[name].js`,
      },
      module: {
