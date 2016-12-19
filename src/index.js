@@ -1,7 +1,16 @@
-/**
-**  inside of the main.js
-**/
-const __debug = require('debug');
-const debug = __debug('_yyCoding: ');
-debug('this is main.js');
-console.log('why can we using __debug??')
+// const __debug = require('debug');
+// const vue = require('vue');
+// const vueRouter = require('vue-router');
+import vue from 'vue';
+import vueRouter from 'vue-router'
+import debug from 'debug'
+import App from './module/index.vue'
+import _routes from './routes.js'
+vue.use(vueRouter)
+const routes = new vueRouter(_routes);
+// debugger
+const app = new vue({
+    // routes
+    el: '#app',
+    render: h => h(App)
+}).$mount('#app')
