@@ -5,11 +5,11 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = webpack_one_cfg = {
   target: 'web',
   entry: {
-    app:'./src/entry.js',
-    vendor: [
-      'vue',
-      'vue-router'
-      ]
+    app: ['vue','vue-router','./src/entry.js']
+    // vendor: [
+    //   'vue',
+    //   'vue-router'
+      // ]
   },
   output: {
     path: path.resolve(__dirname, './docs'),
@@ -19,13 +19,14 @@ module.exports = webpack_one_cfg = {
     rules: [
       {
         test: /\.vue$/,
+        exclude: /node_modules/,
         loader: 'vue-loader'
       },
       {
         test: /\.js$/,
         // excluding some local linked packages.
         // for normal use cases only node_modules is needed.
-        exclude: /node_modules|vue\/docs|vue-router\/|vue-loader\/|vue-hot-reload-api\//,
+        exclude: /node_modules/,
         loader: 'babel-loader'
       }]
   },
@@ -41,7 +42,20 @@ module.exports = webpack_one_cfg = {
   ],
   devServer: {
     compress: true,
-    hot: true,
-    noInfo: true
+    hot: true
   }
+}
+
+
+if(process.env.NODE_ENV === 'production'){
+  webpack_one_cfg.plugins.push(
+     new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        unused: true,
+        dead_code: true,
+        warnings: false
+      },
+      sourceMap: true
+    })
+  )
 }

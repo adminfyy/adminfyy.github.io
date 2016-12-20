@@ -2,9 +2,7 @@
   <div id="appView">
     <sideBar/>
     <div class="container">
-      <keep-alive>
-          <router-view></router-view>
-      </keep-alive>
+        <router-view></router-view>
     </div>
 </template>
 

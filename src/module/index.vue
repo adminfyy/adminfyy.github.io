@@ -1,7 +1,11 @@
 <template>
   <div id="appView">
     <sideBar/>
-    <route-view name="container"></route-view>
+    <div class="container">
+      <keep-alive>
+          <router-view></router-view>
+      </keep-alive>
+    </div>
 </template>
 
 <script>
@@ -30,5 +34,8 @@ export default {
 }
 .router-link-active{
   color: skyblue;
+}
+.container{
+  margin: 0px 0px 0px 9rem;
 }
 </style>
