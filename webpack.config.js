@@ -12,7 +12,7 @@ module.exports = webpack_one_cfg = {
       ]
   },
   output: {
-    path: path.resolve(__dirname, './dist'),
+    path: path.resolve(__dirname, './docs'),
     filename: '[name].[hash].js'
   },
   module: {
@@ -25,7 +25,7 @@ module.exports = webpack_one_cfg = {
         test: /\.js$/,
         // excluding some local linked packages.
         // for normal use cases only node_modules is needed.
-        exclude: /node_modules|vue\/dist|vue-router\/|vue-loader\/|vue-hot-reload-api\//,
+        exclude: /node_modules|vue\/docs|vue-router\/|vue-loader\/|vue-hot-reload-api\//,
         loader: 'babel-loader'
       }]
   },
