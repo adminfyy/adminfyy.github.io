@@ -1,7 +1,8 @@
 <template>
    <div class="sidebar">
         <ul>
-            <li><router-link to="home">Home</router-link></li>
+            <li><router-link to="home">HOME</router-link></li>
+            <li><router-link to="field">Field Binding</router-link></li>
             <li><router-link to="about">About</router-link></li>
         </ul>
     </div>

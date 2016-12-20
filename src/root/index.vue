@@ -1,5 +1,5 @@
 <template>
-  <div id="appView">
+  <div id="app">
     <sideBar/>
     <div class="container">
         <router-view></router-view>
@@ -22,18 +22,27 @@ export default {
 </script>
 
 <style>
+body{
+  height: 100%;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  height: 100%;
   margin-top: 60px;
 }
 .router-link-active{
   color: skyblue;
 }
 .container{
+  display: inline-block;
   margin: 0px 0px 0px 9rem;
+  height: 100%;
+  max-height: 100%;
+  overflow: auto;
+  text-align: center;
 }
 </style>

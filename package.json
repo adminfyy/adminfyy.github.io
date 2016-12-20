@@ -17,6 +17,7 @@
   "homepage": "https://github.com/adminfyy/adminfyy#readme",
   "description": "trying using vuejs",
   "dependencies": {
+    "html-webpack-plugin": "^2.24.1",
     "vue": "^2.1.0",
     "vue-router": "^2.1.1"
   },
