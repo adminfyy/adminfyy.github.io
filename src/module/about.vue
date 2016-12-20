@@ -1,12 +1,10 @@
 <template>
-  <div id="app">
     <h1>{{ msg }}</h1>
-  </div>
 </template>
 
 <script>
 export default {
-  name: 'app',
+  name: 'about',
   data () {
     return {
       msg: 'About  Page!'
