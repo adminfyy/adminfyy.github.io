@@ -2,7 +2,7 @@
   "name": "adminfyy",
   "version": "1.0.0",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --hot --progress",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --hot --inline",
     "build": "cross-env NODE_ENV=production webpack"
   },
   "repository": {

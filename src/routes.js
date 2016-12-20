@@ -8,19 +8,15 @@ const path = './module'
 //   })
 // }
 export default [{
-    name: 'default',
     path: '/',
-    component: resolve => require([`${path}/home.vue`], resolve)
+    component: () => System.import(`${path}/home.vue`)
 }, {
-    name: 'home',
     path: '/home',
-    component: resolve => require([`${path}/home.vue`], resolve)
+    component: System.import(`${path}/home.vue`)
 }, {
-    name: 'about',
     path: '/about',
-    component: resolve => require([`${path}/about.vue`], resolve)
+    component: System.import(`${path}/about.vue`)
 }, {
-    name: 'user',
     path: '/user/:id',
-    component: resolve => require([`${path}/user.vue`], resolve)
+    component: System.import(`${path}/user.vue`)
 }]

@@ -5,11 +5,11 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = webpack_one_cfg = {
   target: 'web',
   entry: {
-    app: ['vue','vue-router','./src/entry.js']
-    // vendor: [
-    //   'vue',
-    //   'vue-router'
-      // ]
+    app: './src/entry.js',
+    vendor: [
+      'vue',
+      'vue-router'
+    ]
   },
   output: {
     path: path.resolve(__dirname, './docs'),
@@ -42,8 +42,10 @@ module.exports = webpack_one_cfg = {
   ],
   devServer: {
     compress: true,
-    hot: true
-  }
+    hot: true,
+    noInfo: true
+  },
+  devtool:"eval"
 }
 
 

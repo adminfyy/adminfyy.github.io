@@ -1,19 +1,8 @@
 <template>
    <div class="sidebar">
         <ul>
-            <li><router-link :to="{path:'home'}" replace>Home</router-link></li>
-            <li><router-link :to="{path:'blog'}" replace>Blog</router-link></li>
-            <li><router-link :to="{path:'about'}" replace>About</router-link></li>
-            <li><router-link :to="{name:'user',params: {id:'admin'}}" replace>To user</router-link></li>
-            <!-- 
-          <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-          <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-          <li><a href="https://gitter.im/vuejs/vue" target="_blank">Gitter Chat</a></li>
-          <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-          <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-          <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-          <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-          <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li> -->
+            <li><router-link to="home">Home</router-link></li>
+            <li><router-link to="about">About</router-link></li>
         </ul>
     </div>
 </template>
