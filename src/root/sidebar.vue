@@ -2,8 +2,8 @@
    <div class="sidebar">
         <ul>
             <li><router-link to="home">HOME</router-link></li>
-            <li><router-link to="field">Field Binding</router-link></li>
-            <li><router-link to="about">About</router-link></li>
+            <li><router-link to="blog">BLOG</router-link></li>
+            <li><router-link to="about">ABOUT</router-link></li>
         </ul>
     </div>
 </template>
@@ -23,6 +23,7 @@ export default {
     height: 100%;
     margin: 0px auto;
     border-right: 1px solid grey;
+    box-shadow: 4px 0px 20px #888888;
 }
 .sidebar ul {
     list-style: none;

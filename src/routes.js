@@ -11,4 +11,7 @@ export default [{
 }, {
     path: '/user/:id',
     component: () => System.import(`${path}/user.vue`)
+}, {
+    path: '/blog',
+    component: () => System.import(`${path}/blog.vue`)
 }]

@@ -6,14 +6,11 @@
 	</div>
 </template>
 <script>
-import blog from '../mock/blog.json'
 export default {
 	name: 'home',
 	data() {
 		return {
-			msg: 'Hello Vue',
-			filter: '',
-			blog: blog
+			msg: 'Hello Vue'
 		}
 	}
 }
