@@ -2,7 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = webpack_one_cfg = {
+module.exports = config = {
   target: 'web',
   entry: {
     app: './src/entry.js',
@@ -48,9 +48,8 @@ module.exports = webpack_one_cfg = {
   devtool:"eval"
 }
 
-
 if(process.env.NODE_ENV === 'production'){
-  webpack_one_cfg.plugins.push(
+  config.plugins.push(
      new webpack.optimize.UglifyJsPlugin({
       compress: {
         unused: true,

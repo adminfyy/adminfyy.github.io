@@ -7,8 +7,7 @@ Vue.use(Router);
 
 const router = new Router({routes});
 const app = new Vue(Vue.util.extend({
-	// el: '#app',
 	router
-	// render: h => h(App)
-}, App)).$mount('#app')
+}, App))
+app.$mount('#app')
 // app.$mount("#app")
