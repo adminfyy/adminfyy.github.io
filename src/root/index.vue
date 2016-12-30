@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style>
-body{
+html,body{
   height: 100%;
 }
 #app {

@@ -1,8 +1,13 @@
 <template>
 	<div class="thumb">
-			__yy JavaScript
-			<p>FrontEnd developed by vue.vue-router.</p>
-			<footer>power by <a href="https://github.com/adminfyy"></a></footer>
+			<div class="flag">
+				JavaScript
+			</div>
+			
+			<footer>
+				<p>FrontEnd developed by vue.vue-router.</p>
+				<p>power by <a href="https://github.com/adminfyy">fyy</a></p>
+			</footer>
 	</div>
 </template>
 <script>
@@ -16,4 +21,7 @@ export default {
 }
 </script>
 <style type="text/css">
+.thumb{
+	height: 100%;
+}
 </style>

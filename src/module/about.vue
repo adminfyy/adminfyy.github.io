@@ -18,7 +18,7 @@ export default {
   	colorful () {
   		const colorArray = [];
   		for (var i = 0,color = '#000'; i < 255; i++) {
-  			color = `rgba(${i},${i},${i},${i}`
+  			color = `rgb(${i},${i},${i}`
   			colorArray.push(color)
   		};
   		return colorArray;
