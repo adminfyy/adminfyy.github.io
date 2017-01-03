@@ -5,8 +5,7 @@
 			</div>
 			
 			<footer>
-				<p>FrontEnd developed by vue.vue-router.</p>
-				<p>power by <a href="https://github.com/adminfyy">fyy</a></p>
+				<p>Maintain by <a href="https://github.com/adminfyy">ADMINFYY</a></p>
 			</footer>
 	</div>
 </template>
@@ -24,4 +23,9 @@ export default {
 .thumb{
 	height: 100%;
 }
+.flag{
+	height: 50%;
+	line-height: 3rem;
+	background: skyblue;
+}	
 </style>

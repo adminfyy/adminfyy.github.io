@@ -2,7 +2,7 @@
    <div class="sidebar">
         <ul>
             <li><router-link to="home">HOME</router-link></li>
-            <li><router-link to="blog">BLOG</router-link></li>
+            <li><router-link to="DEMO">DEMO</router-link></li>
             <li><router-link to="about">ABOUT</router-link></li>
         </ul>
     </div>

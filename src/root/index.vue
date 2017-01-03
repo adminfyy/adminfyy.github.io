@@ -22,8 +22,9 @@ export default {
 </script>
 
 <style>
-html,body{
-  height: 100%;
+body{
+  margin: 0px 0px;
+  padding: 0px 0px;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -42,6 +43,8 @@ html,body{
   height: 100%;
   max-height: 100%;
   overflow: auto;
-  text-align: center;
+  position: relative;
+  padding: .5rem .5rem;
+  width: 100%;
 }
 </style>

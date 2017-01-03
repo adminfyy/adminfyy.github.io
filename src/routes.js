@@ -14,4 +14,7 @@ export default [{
 }, {
     path: '/blog',
     component: () => System.import(`${path}/blog.vue`)
+}, {
+    path: '/demo',
+    component: () => System.import(`${path}/demo.vue`)
 }]

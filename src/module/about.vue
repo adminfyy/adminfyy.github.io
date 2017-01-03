@@ -1,6 +1,6 @@
 <template>
 	<div>
-    	<h5>{{ msg }}</h5>
+    	<h5 class="fl">{{ msg }}</h5>
     	<!-- <code>{{colorful}}</code> -->
     	<div v-for="color in colorful" class="square" v-bind:style="{ 'background-color': color}"></div>
     	</div>
@@ -36,4 +36,10 @@ export default {
 		padding: 0px 0px;
 		background-size: 100% 100%;
 	}
+  .fl{
+    position: absolute;
+    background: rgba(128,128,128,0.5);
+    color: white;
+    left: 50%;
+  }
 </style>
