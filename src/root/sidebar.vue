@@ -3,6 +3,7 @@
         <ul>
             <li><router-link to="home">HOME</router-link></li>
             <li><router-link to="DEMO">DEMO</router-link></li>
+            <li><router-link to="blog">BLOG</router-link></li>
             <li><router-link to="about">ABOUT</router-link></li>
         </ul>
     </div>
@@ -22,8 +23,8 @@ export default {
     top: 0px;
     height: 100%;
     margin: 0px auto;
-    border-right: 1px solid grey;
     box-shadow: 4px 0px 20px #888888;
+    z-index: 33;
 }
 .sidebar ul {
     list-style: none;

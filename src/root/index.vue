@@ -39,12 +39,12 @@ body{
 }
 .container{
   display: inline-block;
-  margin: 0px 0px 0px 9rem;
+  margin: 0px auto;
   height: 100%;
-  max-height: 100%;
   overflow: auto;
   position: relative;
-  padding: .5rem .5rem;
+  padding: .5rem .5rem .5rem 9.5rem;
+  box-sizing: border-box;
   width: 100%;
 }
 </style>

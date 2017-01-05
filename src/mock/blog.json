@@ -1,4 +1,10 @@
 [{
     "title": "表单绑定",
     "content": "vue-绑定使用的指令为 v-model: 暂无快捷简称"
+},{
+    "title": "CSS-FLOAT",
+    "content": "vue-绑定使用的指令为 v-model: 暂无快捷简称"
+},{
+    "title": "CSS-DISPLAY",
+    "content": "vue-绑定使用的指令为 v-model: 暂无快捷简称"
 }]

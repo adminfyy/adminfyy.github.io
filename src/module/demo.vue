@@ -1,5 +1,5 @@
 <template>
-	<div class="blog">
+	<div class="demo">
 		<h3>
 		WHat do u Expect ? Form ?
 		</h3>	
@@ -39,8 +39,8 @@ export default {
 	}
 }
 </script>
-<style type="text/css">
-.blog{
+<style type="text/css"  scoped>
+.demo{
 	text-align: left;
 	margin: .3rem .5rem;
 }
