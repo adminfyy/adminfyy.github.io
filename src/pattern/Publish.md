@@ -224,7 +224,7 @@ el.detach( "/login" );
 加工从不同层级不同方式返回的数据，它的主要责任就是发送请求，并且把返回的数据传递给希望使用的人。
 这个焦点的分离，能够让我们的代码设计 更加简洁一点。
 ## html/templates
-`<form id="flickrSearch">
+```<form id="flickrSearch">
  
    <input type="text" name="tag" id="query"/>
  
@@ -244,10 +244,11 @@ el.detach( "/login" );
     <% _.each(items, function( item ){ %>
         <li><img src="<%= item.media.m %>"/></li>
     <% });%>
-</script>`
+</script>```
 ## javascripts
 
-`;(function( $ ) {
+```
+;(function( $ ) {
  
    // Pre-compile template and "cache" it using closure
    var resultTemplate = _.template($( "#resultTemplate" ).html());
@@ -305,7 +306,7 @@ el.detach( "/login" );
    });
  
  
-})( jQuery );`
+})( jQuery );```
 
 
 在应用设计中的许多不同的场景中，观察者模式用来解耦是一个实用的选择。
