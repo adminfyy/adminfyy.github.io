@@ -25,8 +25,8 @@
 		<div class="spinner f-large"></div>
 
 		<h3>switch?</h3>
-		<input type="checkbox" class="switch">
-			make a switch using presudo[impossible]
+		<label for="switch-1">Make a fake switch</label>
+		<input id="switch-1" type="checkbox" class="switch">
 		</div>
 	</div>
 </template>
@@ -52,18 +52,33 @@ export default {
 	width: 2rem;
 	height: 1rem;
 	outline: none;
-	background: black;
 }
 .switch::before,.switch::after{
 	position: absolute;
 	content: " ";
 	left: 0px;
 	top: 0px;
+	height: 1rem;
+	border-radius: 1rem;
+	/*border: 1px solid grey;*/
+}
+.switch::before{
+	width: 1rem;
+	background: white;
+	z-index: 3;
+	box-shadow: 0px 1px 5px #888888;
+}
+.switch::after{
+	width: 2rem;
+	z-index: 2;
+	box-shadow: inset 1px 1px 1px #888888;
 }
 
-
-.switch[value="on"] {
-	background-color: skyblue;
+.switch:hover:before{
+	left: 1rem;
+}
+.switch:hover:after{
+	background: skyblue;
 }
 
 
