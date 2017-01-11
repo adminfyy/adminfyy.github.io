@@ -26,8 +26,7 @@
 
 		<h3>switch?</h3>
 		<label for="switch-1">Make a fake switch</label>
-		<input id="switch-1" type="checkbox" class="switch">
-		</div>
+		<div id="switch-1" type="checkbox" class="switch"></div>
 	</div>
 </template>
 <script>
@@ -46,6 +45,7 @@ export default {
 }
 
 .switch{
+	-moz-appearance: none;
 	-webkit-appearance: none;
 	appearance: none;
 	position: relative;
@@ -74,10 +74,10 @@ export default {
 	box-shadow: inset 1px 1px 1px #888888;
 }
 
-.switch:hover:before{
+.switch:hover::before{
 	left: 1rem;
 }
-.switch:hover:after{
+.switch:hover::after{
 	background: skyblue;
 }
 
