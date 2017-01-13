@@ -44,6 +44,5 @@ var pubsub = {};
 
 		return this;
 	}
-
-
+	
 })(pubsub)

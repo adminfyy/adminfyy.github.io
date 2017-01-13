@@ -3,8 +3,7 @@
 		<h3>
 		WHat do u Expect ? Form ?
 		</h3>	
-		<form>
-			<form></form>		
+		<form>	
 			<input type="text" class="form-control"/>
 		</form>
 
@@ -27,6 +26,8 @@
 		<h3>switch?</h3>
 		<label for="switch-1">Make a fake switch</label>
 		<div id="switch-1" type="checkbox" class="switch"></div>
+		<div id="switch-1" type="checkbox" class="green switch"></div>
+		<div id="switch-1" type="checkbox" class="red switch"></div>
 	</div>
 </template>
 <script>
@@ -43,6 +44,16 @@ export default {
 	text-align: left;
 	margin: .3rem .5rem;
 }
+.form-control{
+	padding: .5rem .5rem;
+	border-radius: .5rem;
+	border: 1px solid #ccc;
+	outline: none;
+}
+
+.form-control:focus{
+	border-color: skyblue;
+}
 
 .switch{
 	-moz-appearance: none;
@@ -52,6 +63,10 @@ export default {
 	width: 2rem;
 	height: 1rem;
 	outline: none;
+	margin: 1rem 0;
+	border-radius: 1rem;
+	/*border: 1px solid grey;*/
+	/*border-bottom: none;*/
 }
 .switch::before,.switch::after{
 	position: absolute;
@@ -60,7 +75,6 @@ export default {
 	top: 0px;
 	height: 1rem;
 	border-radius: 1rem;
-	/*border: 1px solid grey;*/
 }
 .switch::before{
 	width: 1rem;
@@ -81,6 +95,12 @@ export default {
 	background: skyblue;
 }
 
+.green.switch:hover::after{
+	background: green;
+}
+.red.switch:hover::after{
+	background: crimson;
+}
 
 .badge {
 	border-radius: 1rem;
@@ -93,7 +113,7 @@ export default {
 	background: skyblue;
 }
 .badge-success {
-	background: green;
+	background: forestgreen;
 }
 .badge-warning {
 	background: red;
