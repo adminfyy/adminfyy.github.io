@@ -1,29 +1,29 @@
 <template>
 	<div class="demo">
-		<h3>
-		WHat do u Expect ? Form ?
-		</h3>	
+		<h1>
+		Demonstration
+		</h1>	
 		<form>	
 			<input type="text" class="form-control"/>
 		</form>
 
-		<h3>Badge ?</h3>
+		<h3>Badge</h3>
 		<div class="badge badge-primary">
-			Badge
+			Badge primary
 		</div>
 		<div class="badge badge-success">
-			Badge
+			Badge success
 		</div>
 		<div class="badge badge-warning">
-			Badge
+			Badge warning
 		</div>
 
-		<h3>Spinner ?</h3>
+		<h3>Spinner</h3>
 		<div class="spinner f-small"></div>
 		<div class="spinner"></div>
 		<div class="spinner f-large"></div>
 
-		<h3>switch?</h3>
+		<h3>switch</h3>
 		<label for="switch-1">Make a fake switch</label>
 		<div id="switch-1" type="checkbox" class="switch"></div>
 		<div id="switch-1" type="checkbox" class="green switch"></div>
