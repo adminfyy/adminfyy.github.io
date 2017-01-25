@@ -23,8 +23,7 @@
 		<div class="spinner"></div>
 		<div class="spinner f-large"></div>
 
-		<h3>switch</h3>
-		<label for="switch-1">Make a fake switch</label>
+		<h3>Switch</h3>
 		<div id="switch-1" type="checkbox" class="switch"></div>
 		<div id="switch-1" type="checkbox" class="green switch"></div>
 		<div id="switch-1" type="checkbox" class="red switch"></div>
@@ -60,36 +59,35 @@ export default {
 	-webkit-appearance: none;
 	appearance: none;
 	position: relative;
-	width: 2rem;
-	height: 1rem;
-	outline: none;
-	margin: 1rem 0;
-	border-radius: 1rem;
-	/*border: 1px solid grey;*/
-	/*border-bottom: none;*/
+	width: 3rem;
+	height: 1.5rem;
+	margin: .5rem 0;
+	border-radius: 1.5rem;
+	display: inline-block;
 }
 .switch::before,.switch::after{
 	position: absolute;
 	content: " ";
 	left: 0px;
 	top: 0px;
-	height: 1rem;
+	height: 1.5rem;
 	border-radius: 1rem;
 }
 .switch::before{
-	width: 1rem;
+	width: 1.5rem;
 	background: white;
 	z-index: 3;
-	box-shadow: 0px 1px 5px #888888;
+	box-shadow: 0px 1px 3px #888888;
+	content: "-";
 }
 .switch::after{
-	width: 2rem;
+	width: 3rem;
 	z-index: 2;
-	box-shadow: inset 1px 1px 1px #888888;
+	box-shadow: inset 0px 1px 3px #888888;
 }
 
 .switch:hover::before{
-	left: 1rem;
+	left: 1.5rem;
 }
 .switch:hover::after{
 	background: skyblue;

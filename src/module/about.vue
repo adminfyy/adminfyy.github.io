@@ -1,9 +1,7 @@
 <template>
-	<div>
+	<div class="about">
     	<h5 class="fl">{{ msg }}</h5>
-    	<!-- <code>{{colorful}}</code> -->
-    	<div v-for="color in colorful" class="square" v-bind:style="{ 'background-color': color}"></div>
-    	</div>
+    	<div v-for="color in colorful" class="square" v-bind:style="{ 'background': color}"></div>
 	</div>
 </template>
 <script>
@@ -17,29 +15,43 @@ export default {
   computed: {
   	colorful () {
   		const colorArray = [];
-  		for (var i = 0,color = '#000'; i < 255; i++) {
-  			color = `rgb(${i},${i},${i}`
-  			colorArray.push(color)
+      let color;
+  		for (var i = 0; i < 256; i++) {
+  			color = `rgba(${this.getRandomColor()},${this.getRandomColor()},${this.getRandomColor()}, 0.8)`;
+  			colorArray.push(color);
   		};
   		return colorArray;
   	}
+  },
+
+  methods: {
+    getRandomColor () {
+      return parseInt(Math.random() * 256);
+    }
   }
 }
 </script>
 
 <style>
-	.square{
-		width: 50px;
-		height: 50px;
-		display: inline-block;
-		margin: 0px 0px;
-		padding: 0px 0px;
-		background-size: 100% 100%;
-	}
-  .fl{
-    position: absolute;
-    background: rgba(128,128,128,0.5);
-    color: white;
-    left: 50%;
-  }
+.about{
+  font-size: 0px;
+  text-align: left;
+  /*margin: 0px 10rem;*/
+  /*max-width: 50rem;*/
+}
+.square{
+  font-size: 0px;
+	width: 50px;
+	height: 50px;
+	display: inline-block;
+	margin: 0px 0px;
+	padding: 0px 0px;
+	background-size: 100% 100%;
+}
+.fl{
+  position: absolute;
+  color: white;
+  left: 50%;
+  font-size: 1rem;
+}
 </style>
