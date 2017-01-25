@@ -26,28 +26,28 @@ export default {
 <style type="text/css" scoped>
 .blog{
 	border: 1px solid #ccc;
-	margin: .3rem .3rem;
-	padding: .1rem .1rem;
 	border-radius: .3rem;
-	text-align: left;
+	margin: .3rem .3rem;
 }
 .blog .header,.content{
-	height: 1rem;
-	line-height: 1rem;
+	height: 2rem;
+	line-height: 2rem;
+	transition: max-height 1s;
+	box-sizing: border-box;
 }
 .blog .header{
 	font-size: 1.2rem;
 	background: skyblue;
-	padding: .5rem .5rem;
 	border-radius: .3rem;
-	margin: .5rem .5rem;
 }
 .blog .content{
-	max-height: 0;
+	max-height: 0px;
 	overflow: hidden;
 }
 .blog .header:hover + .content {
 	max-height: 5rem;
-	margin: .5rem .5rem;
+}
+.blog .header:active + .content {
+	max-height: 5rem;
 }
 </style>

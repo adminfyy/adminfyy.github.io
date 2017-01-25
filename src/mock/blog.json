@@ -1,6 +1,6 @@
 [{
-    "title": "表单绑定",
-    "content": "vue-绑定使用的指令为 v-model: 暂无快捷简称"
+    "title": "Vue响应式原理",
+    "content": "Object.defineProperty"
 },{
     "title": "CSS-FLOAT",
     "content": "vue-绑定使用的指令为 v-model: 暂无快捷简称"
