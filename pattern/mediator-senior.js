@@ -1,12 +1,15 @@
 // mediator implement
 //  mediator 的高级实现
 (function(root){
+
+    // 获取独一无二的UniqueId
     function generatorSID(){
         // 具体实现略过
     }
 
     function Subscriber(fn, context, options){
-        if(!this instanceof Subscriber){
+        // bug 
+        if(!(this instanceof Subscriber)){
             return new Subscriber(fn, context, options);
         }
 
@@ -20,7 +23,7 @@
 
 
 function Topic(namespace){
-    if(!this instanceof Topic){
+    if(!(this instanceof Topic)){
         return new Topic(namespace);
     }
 
