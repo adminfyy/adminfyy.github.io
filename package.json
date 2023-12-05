@@ -13,8 +13,8 @@
   "homepage": "https://github.com/adminfyy/adminfyy#readme",
   "description": "trying using vuejs",
   "scripts": {
-    "doc:dev": "vuepress dev docs",
-    "doc:build": "vuepress build docs",
+    "doc:dev": "vuepress dev vdocs",
+    "doc:build": "vuepress build vdocs",
     "dev": "vite",
     "build": "run-p type-check build-only",
     "preview": "vite preview --port 4173",
