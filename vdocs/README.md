@@ -1,27 +1,32 @@
 ---
 home: true
-heroImage: /hero.png
-heroText: Hero 标题
-tagline: Hero 副标题
-actionText: 快速上手 →
-actionLink: /guide/
+heroImage: /favicon.png
+heroText: adminfyy Blog
+tagline: 设计模式 / JavaScript / 前端实验记录
+actions:
+  - text: 开始阅读
+    link: /blog/
+    type: primary
+  - text: 仓库地址
+    link: https://github.com/adminfyy/adminfyy.github.io
+    type: secondary
 features:
-- title: 简洁至上1222
-  details: 以 Markdown 为中心的项目结构，以最少的配置帮助你专注于写作。
-- title: Vue驱动
-  details: 享受 Vue + webpack 的开发体验，在 Markdown 中使用 Vue 组件，同时可以使用 Vue 来开发自定义主题。
-- title: 高性能
-  details: VuePress 为每个页面预渲染生成静态的 HTML，同时在页面被加载的时候，将作为 SPA 运行。
-footer: MIT Licensed | Copyright © 2018-present adminfyy
-
+  - title: 来自旧站的内容迁移
+    details: 基于 gh-pages 历史内容重建，并统一迁移到 VuePress v2。
+  - title: 设计模式主题
+    details: 重点收录 Observer、Publish/Subscribe、Mediator 的概念与代码示例。
+  - title: 代码可对照
+    details: 文中示例与 pattern 目录原始代码互相对应，便于回看。
+footer: Copyright © adminfyy
 ---
-# Hello VuePress
-hello
 
-[thisis markdak quer](./foo.md).
+```text
+################################
+##    #####  #   #   #    #   ##
+##    #       # #     #  #    ##
+##    ###      #       #      ##
+##    #        #       #      ##
+################################
+```
 
-
-
-::: slot footer
-MIT Licensed | Copyright © 2018-present [adminfyy](https://github.com/adminfyy)
-:::
+这是基于旧 `gh-pages` 分支与 `pattern/` 目录重建的新博客主页。

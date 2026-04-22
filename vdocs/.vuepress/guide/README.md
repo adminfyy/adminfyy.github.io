@@ -1,3 +1,0 @@
-# guild
-
-this is guide
