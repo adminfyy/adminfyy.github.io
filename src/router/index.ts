@@ -20,6 +20,21 @@ const router = new VueRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue')
+    },
+    {
+      path: '/codex',
+      name: 'codex',
+      component: () => import('../views/CodexView.vue')
+    },
+    {
+      path: '/agent-portal',
+      name: 'agent-portal',
+      component: () => import('../views/AgentPortalView.vue')
+    },
+    {
+      path: '/blog/:slug',
+      name: 'blog-detail',
+      component: () => import('../views/BlogDetailView.vue')
     }
   ]
 })

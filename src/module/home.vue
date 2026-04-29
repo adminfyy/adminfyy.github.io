@@ -5,7 +5,7 @@
 			</div>
 			
 			<footer>
-				<p>Maintain by <a href="https://github.com/adminfyy">ADMINFYY</a></p>
+				<p>Maintain by <a href="https://github.com/adminfoo">ADMINFOO</a></p>
 			</footer>
 	</div>
 </template>
