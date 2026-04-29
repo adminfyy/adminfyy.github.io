@@ -35,6 +35,11 @@ const router = new VueRouter({
       path: '/blog/:slug',
       name: 'blog-detail',
       component: () => import('../views/BlogDetailView.vue')
+    },
+    {
+      path: '/tic-tac-toe',
+      name: 'tic-tac-toe',
+      component: () => import('../views/TicTacToeView.vue')
     }
   ]
 })

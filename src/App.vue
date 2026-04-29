@@ -10,6 +10,7 @@
       </div>
       <nav>
         <router-link to="/">Blog</router-link>
+        <router-link to="/tic-tac-toe">Game</router-link>
         <router-link to="/agent-portal">Agent Portal</router-link>
         <router-link to="/codex">Codex</router-link>
         <router-link to="/about">About</router-link>
