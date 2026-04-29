@@ -15,6 +15,10 @@
 - [前端架构决策手册](/blog/frontend-architecture-decision-playbook.html)
 - [前端工程理念：快稳简](/blog/frontend-engineering-philosophy.html)
 - [AI Native 前端工作流](/blog/ai-native-frontend-workflow.html)
+- [Claude Code 工程化工作流](/blog/claude-code-engineering-workflow.html)
+- [Claude Code 多代理协作策略](/blog/claude-code-multi-agent-strategy.html)
+- [Claude Code 大仓库调试与重构](/blog/claude-code-large-repo-debug-refactor.html)
+- [Claude Code 安全与治理](/blog/claude-code-security-governance.html)
 - [旧站内容归档](/blog/legacy-notes.html)
 
 ## 本站定位
