@@ -2,7 +2,13 @@
   <div id="app">
     <header class="site-header">
       <div class="brand">
-        <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="36" height="36" />
+        <img
+          alt="Vue logo"
+          class="logo"
+          src="@/assets/logo.svg"
+          width="36"
+          height="36"
+        />
         <div>
           <p class="site-name">adminfoo Labs</p>
           <p class="site-subtitle">Cinematic Agent Playground</p>
@@ -11,6 +17,7 @@
       <nav>
         <router-link to="/">Blog</router-link>
         <router-link to="/tic-tac-toe">Game</router-link>
+        <router-link to="/overseas-export">Export</router-link>
         <router-link to="/agent-portal">Agent Portal</router-link>
         <router-link to="/codex">Codex</router-link>
         <router-link to="/about">About</router-link>
