@@ -12,6 +12,7 @@ const router = new VueRouter({
       path: "/",
       name: "home",
       component: HomeView,
+      meta: { title: "Blog" },
     },
     {
       path: "/about",
@@ -20,16 +21,19 @@ const router = new VueRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import("../views/AboutView.vue"),
+      meta: { title: "About" },
     },
     {
       path: "/codex",
       name: "codex",
       component: () => import("../views/CodexView.vue"),
+      meta: { title: "Codex" },
     },
     {
       path: "/agent-portal",
       name: "agent-portal",
       component: () => import("../views/AgentPortalView.vue"),
+      meta: { title: "Agent Portal" },
     },
     {
       path: "/blog/:slug",
@@ -40,11 +44,13 @@ const router = new VueRouter({
       path: "/tic-tac-toe",
       name: "tic-tac-toe",
       component: () => import("../views/TicTacToeView.vue"),
+      meta: { title: "Game" },
     },
     {
       path: "/overseas-export",
       name: "overseas-export",
       component: () => import("../views/OverseasExportView.vue"),
+      meta: { title: "Export" },
     },
   ],
 });

@@ -15,18 +15,33 @@
         </div>
       </div>
       <nav>
-        <router-link to="/">Blog</router-link>
-        <router-link to="/tic-tac-toe">Game</router-link>
-        <router-link to="/overseas-export">Export</router-link>
-        <router-link to="/agent-portal">Agent Portal</router-link>
-        <router-link to="/codex">Codex</router-link>
-        <router-link to="/about">About</router-link>
+        <router-link
+          v-for="route in menuRoutes"
+          :key="route.path"
+          :to="route.path"
+        >
+          {{ route.meta.title }}
+        </router-link>
       </nav>
     </header>
 
     <router-view />
   </div>
 </template>
+
+<script>
+import router from "./router";
+
+export default {
+  computed: {
+    menuRoutes() {
+      return router.options.routes.filter(
+        (route) => route.meta && route.meta.title,
+      );
+    },
+  },
+};
+</script>
 
 <style scoped>
 .site-header {

@@ -1,62 +1,60 @@
-var path = require('path');
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+var path = require("path");
+var webpack = require("webpack");
+var HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = config = {
-  target: 'web',
+  target: "web",
   entry: {
-    app: './src/entry.js',
-    vendor: [
-      'vue',
-      'vue-router'
-    ]
+    app: "./src/apps/legacy/entry.js",
+    vendor: ["vue", "vue-router"],
   },
   output: {
-    path: path.resolve(__dirname, './docs'),
-    filename: '[name].[hash].js'
+    path: path.resolve(__dirname, "./docs"),
+    filename: "[name].[hash].js",
   },
   module: {
     rules: [
       {
         test: /\.vue$/,
         exclude: /node_modules/,
-        loader: 'vue-loader'
+        loader: "vue-loader",
       },
       {
         test: /\.js$/,
         // excluding some local linked packages.
         // for normal use cases only node_modules is needed.
         exclude: /node_modules/,
-        loader: 'babel-loader'
-      }]
+        loader: "babel-loader",
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'index.template.html',
-      filename: 'index.html'
+      template: "index.template.html",
+      filename: "index.html",
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      filename: 'common.js'
-    })
+      name: "vendor",
+      filename: "common.js",
+    }),
   ],
   devServer: {
     compress: true,
     hot: true,
-    noInfo: true
+    noInfo: true,
   },
-  devtool:"eval"
-}
+  devtool: "eval",
+};
 
-if(process.env.NODE_ENV === 'production'){
+if (process.env.NODE_ENV === "production") {
   config.plugins.push(
-     new webpack.optimize.UglifyJsPlugin({
+    new webpack.optimize.UglifyJsPlugin({
       compress: {
         unused: true,
         dead_code: true,
-        warnings: false
+        warnings: false,
       },
-      sourceMap: true
-    })
-  )
+      sourceMap: true,
+    }),
+  );
 }
