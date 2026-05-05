@@ -26,7 +26,7 @@ const workContents = [
   <div class="about">
     <p class="eyebrow">About</p>
     <h1>Resume</h1>
-    <p class="intro">adminfoo · Frontend Engineer · 6Y+ Experience</p>
+    <p class="intro">adminfoo · Frontend Engineer · 6Y+ Experience · 技术改变生活</p>
 
     <section class="block">
       <h2>Profile</h2>

@@ -12,7 +12,7 @@ const router = new VueRouter({
       path: "/",
       name: "home",
       component: HomeView,
-      meta: { title: "Blog" },
+      meta: { title: "首页" },
     },
     {
       path: "/about",

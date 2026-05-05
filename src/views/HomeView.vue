@@ -11,50 +11,50 @@ const featuredPosts: BlogPost[] = posts.slice(0, 3)
   <main class="blog-page">
     <section class="hero">
       <div class="hero-content">
-        <p class="kicker">✨ Cinematic Blog System</p>
-        <h1>Patterns, Agents, and Execution Stories</h1>
+        <p class="kicker">🌟 技术改变生活</p>
+        <h1>用代码探索世界，以工程驱动创新</h1>
         <p class="description">
-          主站自动聚合 `vdocs/blog` 与 `pattern/` 内容，结合 Agent 工具门户，形成可演示的工程博客首页。
+          记录前端工程实践、设计模式研究与 Agent 工具开发，展示技术如何赋能日常生活。
         </p>
         <div class="hero-actions">
-          <router-link class="btn primary" to="/agent-portal">
-            <span class="btn-icon">🚀</span>
-            进入 Agent Portal
+          <router-link class="btn primary" to="/about">
+            <span class="btn-icon">👨‍💻</span>
+            关于我
           </router-link>
-          <router-link class="btn ghost" to="/codex">
-            <span class="btn-icon">⚡</span>
-            打开 Codex 工具台
+          <router-link class="btn ghost" to="/agent-portal">
+            <span class="btn-icon">🚀</span>
+            Agent Portal
           </router-link>
         </div>
       </div>
       <div class="hero-metrics">
         <div class="metric">
+          <div class="metric-icon">💡</div>
+          <p>技术理念</p>
+          <strong>创新</strong>
+        </div>
+        <div class="metric">
+          <div class="metric-icon">🔧</div>
+          <p>工程实践</p>
+          <strong>落地</strong>
+        </div>
+        <div class="metric">
           <div class="metric-icon">📝</div>
-          <p>Posts</p>
+          <p>文章</p>
           <strong>{{ stats.total }}</strong>
         </div>
         <div class="metric">
-          <div class="metric-icon">🎨</div>
-          <p>Pattern Files</p>
-          <strong>{{ stats.patternCount }}</strong>
-        </div>
-        <div class="metric">
-          <div class="metric-icon">📚</div>
-          <p>VDocs Blogs</p>
-          <strong>{{ stats.vdocsCount }}</strong>
-        </div>
-        <div class="metric">
-          <div class="metric-icon">💡</div>
-          <p>Notes</p>
-          <strong>{{ stats.seedCount }}</strong>
+          <div class="metric-icon">🌐</div>
+          <p>开源</p>
+          <strong>共享</strong>
         </div>
       </div>
     </section>
 
     <section class="featured">
       <h2>
-        <span class="section-icon">⭐</span>
-        Featured Articles
+        <span class="section-icon">📌</span>
+        精选文章
       </h2>
       <div class="featured-grid">
         <article v-for="(post, index) in featuredPosts" :key="post.id" class="featured-card" :style="{ animationDelay: `${index * 0.1}s` }">
@@ -65,7 +65,7 @@ const featuredPosts: BlogPost[] = posts.slice(0, 3)
           <h3>{{ post.title }}</h3>
           <p class="excerpt">{{ post.excerpt }}</p>
           <router-link class="read-link" :to="`/blog/${post.slug}`">
-            查看详情
+            阅读全文
             <span class="arrow">→</span>
           </router-link>
         </article>
@@ -82,13 +82,13 @@ const featuredPosts: BlogPost[] = posts.slice(0, 3)
           <h2>{{ post.title }}</h2>
           <p class="excerpt">{{ post.excerpt }}</p>
           <router-link class="read-link" :to="`/blog/${post.slug}`">
-            查看详情
+            阅读全文
             <span class="arrow">→</span>
           </router-link>
           <details class="content-preview">
             <summary>
               <span class="expand-icon">▼</span>
-              展开全文
+              展开内容
             </summary>
             <pre>{{ post.content }}</pre>
           </details>
@@ -99,7 +99,7 @@ const featuredPosts: BlogPost[] = posts.slice(0, 3)
         <div class="panel highlight">
           <h3>
             <span class="panel-icon">🔧</span>
-            Source Pipeline
+            内容来源
           </h3>
           <p>
             自动读取 <code>/vdocs/blog/*.md</code> 与 <code>/pattern/*.{md,js,html}</code> 并注入主站博客流。
@@ -108,18 +108,18 @@ const featuredPosts: BlogPost[] = posts.slice(0, 3)
         <div class="panel">
           <h3>
             <span class="panel-icon">🌐</span>
-            Portal Entry
+            工具门户
           </h3>
           <p>访问 <code>/agent-portal</code> 获取 Agent Prompt 工具门户。</p>
         </div>
         <div class="panel stats-panel">
           <h3>
             <span class="panel-icon">📊</span>
-            Quick Stats
+            快速统计
           </h3>
           <div class="stats-list">
             <div class="stat-item">
-              <span class="stat-label">Total Posts</span>
+              <span class="stat-label">文章总数</span>
               <span class="stat-value">{{ stats.total }}</span>
             </div>
             <div class="stat-item">
@@ -162,7 +162,7 @@ const featuredPosts: BlogPost[] = posts.slice(0, 3)
   border-radius: 24px;
   background:
     radial-gradient(circle at 74% 12%, rgba(122, 226, 255, 0.35), transparent 34%),
-    radial-gradient(circle at 22% 88%, rgba(255, 172, 98, 0.3), transparent 36%),
+    radial-gradient(circle at 22% 88%, rgba(96, 218, 250, 0.3), transparent 36%),
     linear-gradient(126deg, #07132c, #0f3a4f 55%, #141a37);
   color: #edf9ff;
   display: grid;

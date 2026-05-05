@@ -10,8 +10,8 @@
           height="36"
         />
         <div>
-          <p class="site-name">adminfoo Labs</p>
-          <p class="site-subtitle">Cinematic Agent Playground</p>
+          <p class="site-name">技术改变生活</p>
+          <p class="site-subtitle">Technology Changes Life</p>
         </div>
       </div>
       <nav>
