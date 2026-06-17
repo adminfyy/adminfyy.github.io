@@ -112,62 +112,37 @@ const copyPrompt = async () => {
 </template>
 
 <style scoped>
-.portal {
-  width: 100%;
-  animation: rise-in 0.6s ease-out both;
-}
+.portal { width: 100%; animation: rise-in 0.5s var(--ease-out) both; }
 
 .hero {
   padding: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 18px;
-  background:
-    radial-gradient(circle at 85% 10%, rgba(97, 218, 251, 0.35), transparent 35%),
-    linear-gradient(130deg, rgba(6, 17, 46, 0.9), rgba(12, 64, 77, 0.78));
-  color: #effbff;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, #312e81, #4f46e5 50%, #7c3aed);
+  color: #fff;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 85% 10%, rgba(255,255,255,0.1), transparent 35%);
+  pointer-events: none;
 }
 
-.eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 12px;
-  opacity: 0.88;
-}
+.eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 11px; opacity: 0.7; font-weight: 600; }
 
-.tool-grid {
-  margin-top: 1rem;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.8rem;
-}
+.tool-grid { margin-top: 1rem; display: grid; grid-template-columns: 1fr; gap: 0.65rem; }
 
 .tool-card {
-  text-align: left;
-  padding: 1rem;
-  border-radius: 14px;
-  border: 1px solid var(--color-border);
-  background: var(--surface-glass);
-  color: var(--color-text);
-  cursor: pointer;
-  transition: transform 0.24s ease, border-color 0.24s ease, background 0.24s ease;
+  text-align: left; padding: 1rem; border-radius: var(--radius-md);
+  border: 1px solid var(--color-border); background: var(--surface-glass);
+  color: var(--color-text); cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-out);
 }
+.tool-card:hover { transform: translateY(-2px); border-color: var(--color-border-hover); }
+.tool-card.active { border-color: var(--accent-500); background: var(--accent-bg-light); }
 
-.tool-card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(97, 218, 251, 0.5);
-}
-
-.tool-card.active {
-  border-color: rgba(97, 218, 251, 0.55);
-  background: rgba(23, 56, 89, 0.45);
-}
-
-.tag {
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  opacity: 0.8;
-}
+.tag { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-secondary); }
 
 .workspace {
   margin-top: 1rem;
@@ -177,17 +152,11 @@ const copyPrompt = async () => {
 }
 
 .glass {
-  border-radius: 16px;
-  padding: 1rem;
-  border: 1px solid var(--color-border);
-  background: var(--surface-glass);
-  backdrop-filter: blur(8px);
+  border-radius: var(--radius-lg); padding: 1rem;
+  border: 1px solid var(--color-border); background: var(--surface-glass);
 }
 
-.tool-title {
-  margin: 0.3rem 0 0.8rem;
-  opacity: 0.9;
-}
+.tool-title { margin: 0.3rem 0 0.8rem; color: var(--color-text-secondary); font-size: 0.92rem; }
 
 label {
   display: grid;
@@ -195,36 +164,18 @@ label {
   margin-bottom: 0.65rem;
 }
 
-textarea {
-  border: 1px solid var(--color-border);
-  border-radius: 10px;
-  padding: 0.6rem;
-  color: var(--color-text);
-  background: rgba(5, 18, 36, 0.5);
-}
+textarea { border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 0.55rem; color: var(--color-text); background: var(--bg-0); font-size: 0.92rem; }
 
-pre {
-  white-space: pre-wrap;
-  border: 1px dashed var(--color-border-hover);
-  border-radius: 12px;
-  padding: 0.8rem;
-  margin: 0.7rem 0;
-  background: rgba(3, 13, 30, 0.46);
-}
+pre { white-space: pre-wrap; border: 1px dashed var(--color-border-hover); border-radius: var(--radius-md); padding: 0.75rem; margin: 0.65rem 0; background: var(--bg-2); font-family: var(--font-mono); font-size: 0.88rem; }
 
 .copy-btn {
-  border: 1px solid rgba(97, 218, 251, 0.5);
-  border-radius: 999px;
-  background: rgba(13, 54, 84, 0.6);
-  color: #e8fbff;
-  padding: 0.4rem 0.95rem;
-  cursor: pointer;
+  border: 1px solid var(--accent-500); border-radius: var(--radius-pill);
+  background: var(--bg-0); color: var(--accent-600); padding: 0.4rem 0.9rem;
+  cursor: pointer; font-size: 0.92rem; transition: all var(--duration-fast) ease;
 }
+.copy-btn:hover { background: var(--accent-bg-light); }
 
-.tip {
-  color: #a2f2c3;
-  margin-top: 0.5rem;
-}
+.tip { color: #10b981; margin-top: 0.5rem; font-size: 0.92rem; }
 
 @media (min-width: 880px) {
   .tool-grid {

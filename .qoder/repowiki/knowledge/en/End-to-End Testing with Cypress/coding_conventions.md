@@ -1,0 +1,2 @@
+- Test specs use `.cy.ts` extension and `describe`/`it` BDD-style structure.
+- Global custom commands are defined in `support/commands.ts` and imported centrally in `support/e2e.ts`.

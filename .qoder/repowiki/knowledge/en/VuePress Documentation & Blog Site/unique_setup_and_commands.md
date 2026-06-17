@@ -1,0 +1,2 @@
+- Development: `npm run dev` (executes `vuepress dev . --clean-cache`).
+- Production build: `npm run build` (executes `vuepress build . --clean-cache`).

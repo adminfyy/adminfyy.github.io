@@ -99,82 +99,46 @@ const handleCellClick = (index: number) => {
 </template>
 
 <style scoped>
-.game-page {
-  display: grid;
-  gap: 1rem;
-}
+.game-page { display: grid; gap: 1rem; animation: rise-in 0.5s var(--ease-out) both; }
 
 .hero {
-  border: 1px solid rgba(168, 230, 255, 0.26);
-  border-radius: 16px;
+  border-radius: var(--radius-xl);
   padding: 1rem;
-  color: #edf9ff;
-  background:
-    radial-gradient(circle at 84% 10%, rgba(97, 218, 251, 0.31), transparent 30%),
-    linear-gradient(135deg, #081631, #123e4f);
+  color: #fff;
+  background: linear-gradient(135deg, #312e81, #6366f1 50%, #8b5cf6);
+  box-shadow: var(--shadow-lg);
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 84% 10%, rgba(255,255,255,0.08), transparent 30%);
+  pointer-events: none;
 }
 
-.eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 12px;
-  opacity: 0.82;
+.eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 11px; opacity: 0.7; font-weight: 600; }
+
+h1 { margin: 0.3rem 0; font-family: var(--font-display); letter-spacing: -0.02em; }
+
+.panel { border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 1rem; background: var(--surface-glass); }
+
+.mode-switch { display: flex; gap: 0.5rem; }
+
+.mode-switch button, .reset {
+  border: 1px solid var(--color-border); border-radius: var(--radius-pill);
+  background: var(--bg-0); color: var(--accent-600); padding: 0.35rem 0.75rem;
+  cursor: pointer; font-size: 0.92rem; transition: all var(--duration-fast) ease;
 }
 
-h1 {
-  margin: 0.3rem 0;
-  font-family: var(--font-display);
-}
+.mode-switch button:hover, .reset:hover { background: var(--accent-bg-subtle); }
 
-.panel {
-  border: 1px solid var(--color-border);
-  border-radius: 16px;
-  padding: 1rem;
-  background: var(--surface-glass);
-}
+.mode-switch button.active { border-color: var(--accent-500); background: var(--accent-bg-light); font-weight: 600; }
 
-.mode-switch {
-  display: flex;
-  gap: 0.55rem;
-}
+.status { margin: 0.75rem 0; font-size: 0.95rem; }
 
-.mode-switch button,
-.reset {
-  border: 1px solid var(--color-border);
-  border-radius: 999px;
-  background: rgba(8, 42, 70, 0.53);
-  color: #e4f8ff;
-  padding: 0.35rem 0.8rem;
-  cursor: pointer;
-}
+.board { width: min(360px, 100%); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; }
 
-.mode-switch button.active {
-  border-color: rgba(97, 218, 251, 0.65);
-  background: rgba(24, 73, 109, 0.7);
-}
+.cell { aspect-ratio: 1 / 1; border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--bg-0); color: var(--color-heading); font-size: clamp(1.5rem, 5vw, 1.8rem); cursor: pointer; transition: background var(--duration-fast) ease; }
+.cell:hover { background: var(--accent-bg-subtle); }
 
-.status {
-  margin: 0.75rem 0;
-}
-
-.board {
-  width: min(360px, 100%);
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.5rem;
-}
-
-.cell {
-  aspect-ratio: 1 / 1;
-  border: 1px solid var(--color-border);
-  border-radius: 10px;
-  background: rgba(4, 17, 34, 0.46);
-  color: #f2fbff;
-  font-size: clamp(1.6rem, 5vw, 2rem);
-  cursor: pointer;
-}
-
-.reset {
-  margin-top: 0.8rem;
-}
+.reset { margin-top: 0.75rem; }
 </style>

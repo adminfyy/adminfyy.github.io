@@ -245,43 +245,24 @@ const copySummary = async () => {
 </template>
 
 <style scoped>
-.export-lab {
-  width: 100%;
-  display: grid;
-  gap: 1rem;
-  animation: rise-in 0.6s ease both;
-}
+.export-lab { width: 100%; display: grid; gap: 1rem; animation: rise-in 0.5s var(--ease-out) both; }
 
 .hero {
-  padding: 1.3rem;
-  border: 1px solid rgba(255, 214, 167, 0.33);
-  border-radius: 18px;
-  color: #fff6eb;
-  background: radial-gradient(
-      circle at 80% 12%,
-      rgba(255, 175, 103, 0.34),
-      transparent 35%
-    ),
-    radial-gradient(
-      circle at 10% 86%,
-      rgba(118, 219, 201, 0.25),
-      transparent 36%
-    ),
-    linear-gradient(136deg, #32170b, #3e2620 48%, #18364a);
+  padding: 1.3rem; border-radius: var(--radius-xl);
+  color: #fff;
+  background: linear-gradient(136deg, #065f46, #059669 48%, #10b981);
+  box-shadow: var(--shadow-lg);
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 80% 12%, rgba(255,255,255,0.08), transparent 35%);
+  pointer-events: none;
 }
 
-.eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 12px;
-  opacity: 0.85;
-}
+.eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 11px; opacity: 0.7; font-weight: 600; }
 
-.hero h1 {
-  font-family: var(--font-display);
-  font-size: clamp(1.6rem, 4vw, 2.4rem);
-  margin: 0.35rem 0 0.55rem;
-}
+.hero h1 { font-family: var(--font-display); font-size: clamp(1.6rem, 4vw, 2.2rem); margin: 0.3rem 0 0.5rem; letter-spacing: -0.03em; }
 
 .workspace {
   display: grid;
@@ -289,13 +270,7 @@ const copySummary = async () => {
   gap: 1rem;
 }
 
-.panel {
-  border-radius: 16px;
-  border: 1px solid var(--color-border);
-  background: var(--surface-glass);
-  backdrop-filter: blur(8px);
-  padding: 1rem;
-}
+.panel { border-radius: var(--radius-lg); border: 1px solid var(--color-border); background: var(--surface-glass); padding: 1rem; }
 
 .form-grid,
 .control-grid {
@@ -310,15 +285,7 @@ label {
   gap: 0.3rem;
 }
 
-input,
-select {
-  width: 100%;
-  border: 1px solid var(--color-border);
-  border-radius: 10px;
-  padding: 0.52rem;
-  background: rgba(7, 19, 35, 0.56);
-  color: var(--color-text);
-}
+input, select { width: 100%; border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 0.5rem; background: var(--bg-0); color: var(--color-text); font-size: 0.92rem; }
 
 .check {
   grid-template-columns: auto 1fr;
@@ -337,12 +304,7 @@ select {
   gap: 0.55rem;
 }
 
-.kpi {
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
-  padding: 0.65rem;
-  background: rgba(7, 24, 43, 0.5);
-}
+.kpi { border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 0.65rem; background: var(--bg-2); }
 
 .kpi p {
   font-size: 12px;
@@ -362,28 +324,12 @@ li + li {
   margin-top: 0.35rem;
 }
 
-pre {
-  margin: 0.7rem 0;
-  white-space: pre-wrap;
-  border: 1px dashed var(--color-border-hover);
-  border-radius: 10px;
-  padding: 0.75rem;
-  background: rgba(2, 14, 29, 0.5);
-}
+pre { margin: 0.65rem 0; white-space: pre-wrap; border: 1px dashed var(--color-border-hover); border-radius: var(--radius-sm); padding: 0.65rem; background: var(--bg-2); font-family: var(--font-mono); font-size: 0.88rem; }
 
-button {
-  border: 1px solid rgba(255, 184, 125, 0.46);
-  border-radius: 999px;
-  padding: 0.4rem 0.85rem;
-  background: rgba(89, 44, 26, 0.55);
-  color: #ffedda;
-  cursor: pointer;
-}
+button { border: 1px solid rgba(16, 185, 129, 0.3); border-radius: var(--radius-pill); padding: 0.4rem 0.85rem; background: var(--bg-0); color: #059669; cursor: pointer; font-size: 0.92rem; transition: all var(--duration-fast) ease; }
+button:hover { background: rgba(16, 185, 129, 0.08); }
 
-.tip {
-  margin-top: 0.5rem;
-  color: #9cf7bc;
-}
+.tip { margin-top: 0.5rem; color: #10b981; font-size: 0.92rem; }
 
 @media (min-width: 960px) {
   .workspace {

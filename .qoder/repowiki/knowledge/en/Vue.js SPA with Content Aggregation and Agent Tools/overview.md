@@ -1,0 +1,1 @@
+A Vue.js single-page application featuring a blog content aggregator, an interactive agent prompt generator, and various utility demos like WASM and Canvas.

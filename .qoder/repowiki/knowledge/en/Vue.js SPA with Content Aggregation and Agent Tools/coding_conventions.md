@@ -1,0 +1,4 @@
+- Views use `<script setup lang="ts">` for composition API logic and type safety.
+- Utility functions are grouped by domain in `src/utils/` and exported as pure functions.
+- Route definitions include `meta` fields for UI titles, which are consumed by the global navigation in `App.vue`.
+- Content aggregation utilities use `import.meta.glob` for static asset ingestion at build time.

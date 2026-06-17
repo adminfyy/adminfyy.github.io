@@ -1,0 +1,4 @@
+- Entry point: `vdocs/.vuepress/config.ts` defines the site metadata, navigation, and sidebar structure.
+- Framework: Uses `@vuepress/theme-default` for layout and `@vuepress/bundler-vite` for the build pipeline.
+- Content organization: Markdown files in `vdocs/blog/` are mapped via the sidebar configuration in `config.ts`, creating a structured reading path for topics like design patterns and architecture decisions.
+- Build scripts: Defined in `package.json` as `vuepress dev` and `vuepress build`, leveraging Vite for hot-reloading and static generation.

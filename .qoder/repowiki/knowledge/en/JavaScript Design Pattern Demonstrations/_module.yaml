@@ -1,0 +1,9 @@
+schema_version: 1
+module_path: pattern_demos
+title: JavaScript Design Pattern Demonstrations
+scope:
+    - pattern/
+source_files: []
+depends_on: []
+related_to:
+    - path: documentation_site

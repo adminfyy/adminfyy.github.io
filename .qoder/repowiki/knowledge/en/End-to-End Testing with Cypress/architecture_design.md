@@ -1,0 +1,4 @@
+- Entry point: `cypress/support/e2e.ts` imports global commands from `cypress/support/commands.ts`, establishing a shared test utility layer.
+- Test specs reside in `cypress/e2e/` (e.g., `example.cy.ts`), following Cypress's default spec discovery pattern.
+- Static test data is managed via `cypress/fixtures/example.json`, decoupling mock data from test logic.
+- TypeScript configuration in `cypress/e2e/tsconfig.json` extends Vue web TS config and explicitly includes Cypress types, ensuring type safety for test files.

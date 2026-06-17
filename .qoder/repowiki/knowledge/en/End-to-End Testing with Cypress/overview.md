@@ -1,0 +1,1 @@
+Provides end-to-end test scaffolding using Cypress, including example tests, custom command support, and fixture data.

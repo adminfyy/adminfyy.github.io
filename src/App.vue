@@ -46,58 +46,73 @@ export default {
 <style scoped>
 .site-header {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
   gap: 1rem;
   margin-bottom: 1.25rem;
-  padding: 0.9rem 1rem;
-  border-radius: 16px;
+  padding: 0.8rem 1.2rem;
+  border-radius: var(--radius-lg);
   border: 1px solid var(--color-border);
   background: var(--surface-glass);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-sm);
 }
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 0.7rem;
+  gap: 0.6rem;
+}
+
+.logo {
+  border-radius: 8px;
 }
 
 nav {
-  font-size: 14px;
+  font-size: 13px;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.2rem;
-}
-
-nav a.router-link-exact-active {
-  color: #e6f4ff;
-  font-weight: 600;
-  background: rgba(97, 218, 251, 0.18);
-  border-color: rgba(97, 218, 251, 0.35);
-}
-
-nav a.router-link-exact-active:hover {
-  background: rgba(97, 218, 251, 0.18);
+  gap: 0.35rem;
 }
 
 nav a {
-  padding: 0.35rem 0.7rem;
+  padding: 0.4rem 0.8rem;
   border: 1px solid var(--color-border);
-  border-radius: 999px;
-  color: var(--color-text);
+  border-radius: var(--radius-pill);
+  color: var(--color-text-secondary);
+  transition: all var(--duration-fast) ease;
+}
+
+nav a:hover {
+  color: var(--accent-600);
+  border-color: var(--color-border-hover);
+  background: var(--accent-bg-subtle);
+}
+
+nav a.router-link-exact-active {
+  color: var(--accent-600);
+  font-weight: 600;
+  background: var(--accent-bg-light);
+  border-color: var(--accent-500);
+}
+
+nav a.router-link-exact-active:hover {
+  background: var(--accent-bg-medium);
 }
 
 .site-name {
   font-family: var(--font-display);
-  font-size: 1.1rem;
-  line-height: 1;
-  letter-spacing: 0.04em;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-heading);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
 }
 
 .site-subtitle {
-  font-size: 0.75rem;
-  opacity: 0.82;
+  font-size: 0.7rem;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.04em;
 }
 
 @media (max-width: 768px) {

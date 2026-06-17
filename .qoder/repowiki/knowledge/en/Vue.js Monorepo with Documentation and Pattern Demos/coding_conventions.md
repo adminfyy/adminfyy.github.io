@@ -1,0 +1,2 @@
+- Shared TypeScript configuration across app and test suites via referenced tsconfig files.
+- Unified linting strategy using ESLint with Vue and TypeScript plugins at the root level.

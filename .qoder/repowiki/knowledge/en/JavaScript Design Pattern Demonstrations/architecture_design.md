@@ -1,0 +1,4 @@
+- The module is structured as a flat collection of independent pattern demonstrations, each consisting of implementation files (.js) and explanatory documentation (.md/.html).
+- Event-based patterns (Observer, Mediator, Publish/Subscribe) rely on in-memory topic/observer registries managed via closure-scoped variables or prototype methods.
+- Creational/Structural patterns (Module, Singleton) utilize IIFE (Immediately Invoked Function Expressions) to enforce encapsulation and instance control.
+- Documentation files (Mediator.md, Publish.md) provide theoretical context and comparative analysis, while HTML/JS pairs (Observer.html/js) offer runnable browser-based examples.

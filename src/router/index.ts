@@ -24,12 +24,6 @@ const router = new VueRouter({
       meta: { title: "About" },
     },
     {
-      path: "/codex",
-      name: "codex",
-      component: () => import("../views/CodexView.vue"),
-      meta: { title: "Codex" },
-    },
-    {
       path: "/agent-portal",
       name: "agent-portal",
       component: () => import("../views/AgentPortalView.vue"),
@@ -51,6 +45,30 @@ const router = new VueRouter({
       name: "overseas-export",
       component: () => import("../views/OverseasExportView.vue"),
       meta: { title: "Export" },
+    },
+    {
+      path: "/wasm",
+      name: "wasm",
+      component: () => import("../views/WasmView.vue"),
+      meta: { title: "WASM" },
+    },
+    {
+      path: "/canvas",
+      name: "canvas",
+      component: () => import("../views/CanvasView.vue"),
+      meta: { title: "Canvas" },
+    },
+    {
+      path: "/three",
+      name: "three",
+      component: () => import("../views/ThreeView.vue"),
+      meta: { title: "3D" },
+    },
+    {
+      path: "/pretext",
+      name: "pretext",
+      component: () => import("../views/PretextView.vue"),
+      meta: { title: "Pretext" },
     },
   ],
 });

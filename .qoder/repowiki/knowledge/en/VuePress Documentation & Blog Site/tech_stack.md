@@ -1,0 +1,1 @@
+VuePress 2.0.0-rc.28 with Vite bundler, Vue 3.5, and Sass for styling support.

@@ -1,0 +1,8 @@
+schema_version: 1
+module_path: e2e_tests
+title: End-to-End Testing with Cypress
+scope:
+    - cypress/
+source_files: []
+depends_on: []
+related_to: []

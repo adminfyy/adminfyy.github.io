@@ -1,0 +1,1 @@
+Cypress E2E testing framework with TypeScript, configured via `@vue/tsconfig` base.

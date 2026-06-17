@@ -1,0 +1,3 @@
+- Uses IIFE (Immediately Invoked Function Expression) to create private scopes for singletons, modules, and pub/sub registries.
+- Implements constructor safety checks using `if (!(this instanceof Constructor)) return new Constructor(...)` to ensure correct instantiation context.
+- Exposes public APIs by returning object literals from closures or extending prototypes, keeping internal state private.

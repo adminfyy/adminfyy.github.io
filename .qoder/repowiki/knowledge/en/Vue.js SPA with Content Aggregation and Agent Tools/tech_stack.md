@@ -1,0 +1,1 @@
+Vue.js 2/3 (mixed syntax), Vue Router, Pinia, TypeScript, Vite (inferred from `import.meta.glob` and `.vue` SFCs).

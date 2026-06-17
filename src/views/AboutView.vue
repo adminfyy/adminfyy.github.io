@@ -76,67 +76,29 @@ const workContents = [
 <style scoped>
 .about {
   border: 1px solid var(--color-border);
-  border-radius: 18px;
+  border-radius: var(--radius-xl);
   background: var(--surface-glass);
-  backdrop-filter: blur(8px);
-  padding: 1.3rem;
-  animation: rise-in 0.45s ease both;
+  padding: 1.5rem;
+  animation: rise-in 0.5s var(--ease-out) both;
+  box-shadow: var(--shadow-sm);
 }
 
-.eyebrow {
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  opacity: 0.82;
-}
+.eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-secondary); font-weight: 600; }
 
-h1 {
-  margin: 0.3rem 0 0.6rem;
-  font-family: var(--font-display);
-}
+h1 { margin: 0.3rem 0 0.6rem; font-family: var(--font-display); letter-spacing: -0.02em; }
 
-.intro {
-  margin-bottom: 0.9rem;
-  opacity: 0.88;
-}
+.intro { margin-bottom: 0.9rem; color: var(--color-text-secondary); font-size: 0.92rem; }
 
-.block {
-  margin-top: 0.95rem;
-  border-top: 1px solid var(--color-border);
-  padding-top: 0.8rem;
-}
+.block { margin-top: 0.95rem; border-top: 1px solid var(--color-border); padding-top: 0.8rem; }
 
-h2 {
-  font-size: 1.05rem;
-  margin-bottom: 0.45rem;
-}
+h2 { font-size: 1rem; margin-bottom: 0.45rem; letter-spacing: -0.01em; }
 
-.chip-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-}
+.chip-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.skill-group + .skill-group { margin-top: 0.5rem; }
 
-.skill-group + .skill-group {
-  margin-top: 0.55rem;
-}
+.group-title { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-text-secondary); margin-bottom: 0.3rem; font-weight: 600; }
 
-.group-title {
-  font-size: 12px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  opacity: 0.82;
-  margin-bottom: 0.35rem;
-}
+.chip { border: 1px solid var(--color-border); border-radius: var(--radius-pill); padding: 0.2rem 0.6rem; background: var(--accent-bg-subtle); color: var(--accent-600); font-size: 0.92rem; }
 
-.chip {
-  border: 1px solid var(--color-border);
-  border-radius: 999px;
-  padding: 0.2rem 0.65rem;
-  background: rgba(16, 46, 71, 0.48);
-}
-
-ul {
-  padding-left: 1.1rem;
-}
+ul { padding-left: 1.1rem; color: var(--color-text-secondary); font-size: 0.92rem; }
 </style>

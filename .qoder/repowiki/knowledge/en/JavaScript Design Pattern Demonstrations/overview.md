@@ -1,0 +1,1 @@
+Provides educational implementations and documentation for core JavaScript design patterns including Observer, Mediator, Publish/Subscribe, Module, and Singleton.
