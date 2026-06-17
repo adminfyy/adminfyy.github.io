@@ -4,14 +4,20 @@ import {
   createArithModule,
   createFibModule,
   createPrimeModule,
+  createMatrixModule,
+  wasmMatrixMul,
   fibJS,
   sumPrimesJS,
   matrixMulJS,
   createMatrix,
   benchmark,
   hexDump,
+  ARITH_WAT,
+  FIB_WAT,
+  PRIME_WAT,
+  MATRIX_WAT,
 } from '@/utils/wasm'
-import type { WasmArithModule, WasmFibModule, WasmPrimeModule, BenchmarkResult } from '@/utils/wasm'
+import type { WasmArithModule, WasmFibModule, WasmPrimeModule, WasmMatrixModule, BenchmarkResult } from '@/utils/wasm'
 
 // ─── WASM module state ───
 const wasmReady = ref(false)
@@ -21,6 +27,7 @@ const loadingStatus = ref('Initializing wabt...')
 let arithModule: WasmArithModule | null = null
 let fibModule: WasmFibModule | null = null
 let primeModule: WasmPrimeModule | null = null
+let matrixModule: WasmMatrixModule | null = null
 
 // ─── Arithmetic demo ───
 const aInput = ref(42)
@@ -40,7 +47,7 @@ const arithResult = computed(() => {
 const WASM_BYTES = new Uint8Array([
   0x00, 0x61, 0x73, 0x6d, 0x01, 0x00, 0x00, 0x00,
   0x01, 0x07, 0x01, 0x60, 0x02, 0x7f, 0x7f, 0x01, 0x7f,
-  0x03, 0x02, 0x01, 0x00,
+  0x03, 0x04, 0x03, 0x00, 0x00, 0x00,
   0x07, 0x19, 0x03,
   0x03, 0x61, 0x64, 0x64, 0x00, 0x00,
   0x03, 0x73, 0x75, 0x62, 0x00, 0x01,
@@ -51,6 +58,18 @@ const WASM_BYTES = new Uint8Array([
   0x07, 0x00, 0x20, 0x00, 0x20, 0x01, 0x6c, 0x0b,
 ])
 const hexDumpText = ref('')
+
+// ─── WAT source viewer ───
+type WatTab = 'arith' | 'fib' | 'prime' | 'matrix'
+const activeWat = ref<WatTab>('arith')
+const activeWatSource = computed(() => {
+  switch (activeWat.value) {
+    case 'arith': return ARITH_WAT
+    case 'fib': return FIB_WAT
+    case 'prime': return PRIME_WAT
+    case 'matrix': return MATRIX_WAT
+  }
+})
 
 // ─── Performance benchmark ───
 const benchRunning = ref(false)
@@ -93,6 +112,21 @@ const runBenchmarks = async () => {
   const matB = createMatrix(sz)
   const matRes: BenchmarkResult[] = []
   matRes.push(benchmark('JS matrixMul', () => matrixMulJS(matA, matB, sz), 1))
+  if (matrixModule) {
+    const wasmMat = matrixModule
+    matRes.push(benchmark('WASM matrixMul', () => {
+      const mem = wasmMat.mem
+      const buf = new Int32Array(mem.buffer)
+      const aOff = 0, bOff = sz * sz, cOff = 2 * sz * sz
+      for (let i = 0; i < sz; i++)
+        for (let j = 0; j < sz; j++) {
+          buf[aOff + i * sz + j] = matA[i][j]
+          buf[bOff + i * sz + j] = matB[i][j]
+        }
+      wasmMat.matMul(aOff * 4, bOff * 4, cOff * 4, sz)
+      return buf[cOff] // return first element
+    }, 1))
+  }
   groups.push({ name: `Matrix ${sz}×${sz}`, results: matRes })
 
   // 4. Arithmetic tight loop
@@ -183,6 +217,9 @@ onMounted(async () => {
     loadingStatus.value = 'Compiling WAT prime module...'
     primeModule = await createPrimeModule()
 
+    loadingStatus.value = 'Compiling WAT matrix module...'
+    matrixModule = await createMatrixModule()
+
     wasmReady.value = true
     hexDumpText.value = hexDump(WASM_BYTES)
   } catch (e) {
@@ -227,8 +264,30 @@ onMounted(async () => {
 
     <section class="card">
       <h2>WASM Binary Hex Dump</h2>
-      <p class="hint">Raw bytes of the arithmetic module (51 bytes).</p>
+      <p class="hint">Raw bytes of the arithmetic module (51 bytes). This is the actual machine code that runs in the WASM VM.</p>
       <pre class="hex-dump">{{ hexDumpText }}</pre>
+    </section>
+
+    <section class="card">
+      <h2>WAT Source Code</h2>
+      <p class="hint">
+        WebAssembly Text Format (WAT) — the human-readable assembly language that compiles to WASM bytecode.
+        These modules are compiled at runtime via <code>wabt</code>.
+      </p>
+      <div class="wat-tabs">
+        <button :class="{ active: activeWat === 'arith' }" @click="activeWat = 'arith'">Arithmetic</button>
+        <button :class="{ active: activeWat === 'fib' }" @click="activeWat = 'fib'">Fibonacci</button>
+        <button :class="{ active: activeWat === 'prime' }" @click="activeWat = 'prime'">Prime Sieve</button>
+        <button :class="{ active: activeWat === 'matrix' }" @click="activeWat = 'matrix'">Matrix Mul</button>
+      </div>
+      <pre class="wat-source"><code>{{ activeWatSource }}</code></pre>
+      <div class="wat-legend">
+        <span><code>i32</code> 32-bit integer</span>
+        <span><code>local.get</code> read variable</span>
+        <span><code>i32.add/sub/mul</code> arithmetic</span>
+        <span><code>i32.load/store</code> memory access</span>
+        <span><code>block/loop/br_if</code> control flow</span>
+      </div>
     </section>
 
     <section class="card benchmark-card">
@@ -310,6 +369,32 @@ input { width: 100%; border: 1px solid var(--color-border); border-radius: var(-
 .result-item .value { font-size: 1rem; font-weight: 600; color: #059669; }
 
 .hex-dump { white-space: pre; border: 1px dashed var(--color-border-hover); padding: 0.75rem; border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: 0.85rem; background: var(--bg-2); overflow-x: auto; }
+
+.wat-tabs { display: flex; gap: 0.35rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
+.wat-tabs button {
+  border: 1px solid var(--color-border); border-radius: var(--radius-pill);
+  padding: 0.3rem 0.7rem; background: var(--bg-2); color: var(--color-text-secondary);
+  cursor: pointer; font-size: 0.85rem; transition: all var(--duration-fast) ease;
+}
+.wat-tabs button:hover { border-color: var(--color-border-hover); background: var(--accent-bg-subtle); }
+.wat-tabs button.active { border-color: #059669; background: rgba(5, 150, 105, 0.1); color: #059669; font-weight: 600; }
+
+.wat-source {
+  white-space: pre; border: 1px solid var(--color-border); padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: 0.82rem;
+  background: #1e293b; color: #e2e8f0; overflow-x: auto; line-height: 1.6;
+  max-height: 400px; overflow-y: auto; margin: 0;
+}
+.wat-source code { color: #e2e8f0; }
+
+.wat-legend {
+  display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 0.5rem;
+  font-size: 0.78rem; color: var(--color-text-secondary);
+}
+.wat-legend code {
+  font-family: var(--font-mono); font-size: 0.75rem; color: #059669;
+  background: rgba(5, 150, 105, 0.08); padding: 0.1rem 0.3rem; border-radius: 3px;
+}
 
 .benchmark-card { border-color: rgba(16, 185, 129, 0.3); }
 .bench-config { display: flex; gap: 0.75rem; align-items: end; margin-bottom: 1rem; flex-wrap: wrap; }

@@ -1,0 +1,4 @@
+- Vue 2 with Composition API via `<script setup>` in newer components.
+- Pinia for state management (via `PiniaVuePlugin` for Vue 2 compatibility).
+- Vue Router 3 with history mode.
+- Vite for build tooling (inferred from `import.meta.glob` and `import.meta.env` usage).

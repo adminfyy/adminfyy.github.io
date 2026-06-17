@@ -1,0 +1,8 @@
+- Entry point: `src/main.ts` bootstraps the Vue 2 instance with Pinia for state management and Vue Router for navigation.
+- Layout: `src/App.vue` provides the global shell with a dynamic navigation bar derived from router metadata.
+- Routing: `src/router/index.ts` defines routes, utilizing lazy-loading (dynamic imports) for most views to optimize bundle size.
+- State Management: `src/stores/counter.ts` uses Pinia for reactive state, though primarily illustrative in this scope.
+- Content Layer: `src/utils/blogPosts.ts` aggregates content from multiple sources (mock JSON, Vite glob-imported Markdown/HTML files) into a unified blog post model.
+- View Layer: `src/views/` contains page-level components (e.g., `HomeView`, `AgentPortalView`, `CanvasView`) that compose UI from utilities and mock data.
+- Utility Layer: `src/utils/` holds pure logic for Markdown parsing (`markdown.ts`), Canvas physics/rendering (`canvas.ts`), and Agent prompt generation (`agent.ts`).
+- Legacy Scope: `src/apps/legacy/` contains an isolated, older Vue application structure with its own entry and routing, likely for migration or backward compatibility purposes.

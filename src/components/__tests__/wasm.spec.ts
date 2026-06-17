@@ -7,6 +7,10 @@ import {
   createMatrix,
   benchmark,
   hexDump,
+  ARITH_WAT,
+  FIB_WAT,
+  PRIME_WAT,
+  MATRIX_WAT,
 } from '@/utils/wasm'
 
 describe('wasm utils', () => {
@@ -97,6 +101,44 @@ describe('wasm utils', () => {
       const dump = hexDump(bytes, 16)
       // Should only show 1 line (16 bytes)
       expect(dump.split('\n').length).toBe(1)
+    })
+  })
+
+  describe('WAT source exports', () => {
+    it('ARITH_WAT contains add/sub/mul exports', () => {
+      expect(ARITH_WAT).toContain('(export "add")')
+      expect(ARITH_WAT).toContain('(export "sub")')
+      expect(ARITH_WAT).toContain('(export "mul")')
+      expect(ARITH_WAT).toContain('i32.add')
+      expect(ARITH_WAT).toContain('i32.sub')
+      expect(ARITH_WAT).toContain('i32.mul')
+    })
+
+    it('FIB_WAT contains fib export and loop structure', () => {
+      expect(FIB_WAT).toContain('(export "fib")')
+      expect(FIB_WAT).toContain('loop')
+      expect(FIB_WAT).toContain('br_if')
+      expect(FIB_WAT).toContain('i32.add')
+    })
+
+    it('PRIME_WAT contains sumPrimes export', () => {
+      expect(PRIME_WAT).toContain('(export "sumPrimes")')
+      expect(PRIME_WAT).toContain('i32.rem_u')
+      expect(PRIME_WAT).toContain('loop')
+    })
+
+    it('MATRIX_WAT contains memory export and matMul', () => {
+      expect(MATRIX_WAT).toContain('(export "mem")')
+      expect(MATRIX_WAT).toContain('(export "matMul")')
+      expect(MATRIX_WAT).toContain('i32.load')
+      expect(MATRIX_WAT).toContain('i32.store')
+    })
+
+    it('all WAT sources are valid module strings', () => {
+      for (const wat of [ARITH_WAT, FIB_WAT, PRIME_WAT, MATRIX_WAT]) {
+        expect(wat).toContain('(module')
+        expect(wat.trim().endsWith(')')).toBe(true)
+      }
     })
   })
 })

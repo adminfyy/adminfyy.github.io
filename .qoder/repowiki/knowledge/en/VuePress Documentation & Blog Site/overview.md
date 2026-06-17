@@ -1,1 +1,1 @@
-A static documentation site built with VuePress v2, hosting technical blogs on JavaScript design patterns and frontend engineering practices.
+A static documentation and blog site built with VuePress v2, hosting frontend architecture notes, design pattern explanations, and engineering philosophy articles.

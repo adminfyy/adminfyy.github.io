@@ -1,0 +1,2 @@
+- `npm run doc:dev` and `npm run doc:build` manage the standalone VuePress documentation site lifecycle from the root context.
+- `npm run test:e2e` uses `start-server-and-test` to automatically boot the production preview of the main SPA before executing Cypress suites, linking build artifacts to verification steps.

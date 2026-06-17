@@ -1,8 +1,9 @@
 schema_version: 1
 module_path: main_app
-title: Vue.js SPA with Content Aggregation and Agent Tools
+title: Vue.js Blog & Interactive Demo Portal
 scope:
     - src/
 source_files: []
 depends_on: []
-related_to: []
+related_to:
+    - path: documentation_site

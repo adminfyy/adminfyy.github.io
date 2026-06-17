@@ -1,0 +1,1 @@
+A Vue.js application featuring a content-driven blog with Markdown rendering and interactive HTML5 Canvas demonstrations.

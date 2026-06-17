@@ -1,2 +1,2 @@
-- Markdown files use YAML frontmatter for page-level metadata such as titles and descriptions where applicable.
-- Blog posts are organized in a flat directory structure under `blog/` with explicit sidebar mapping in the central config file.
+- Markdown files use YAML frontmatter for page-specific metadata like title and description where applicable.
+- Blog posts are organized in a flat directory structure under `vdocs/blog/` with explicit sidebar linking in the central config.

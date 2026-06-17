@@ -1,0 +1,4 @@
+- Views use `<script setup lang="ts">` for TypeScript-enabled Composition API components, while some older views use `Vue.extend` with Options API.
+- Utility functions are organized by domain (e.g., `agent.ts`, `canvas.ts`, `markdown.ts`) and export pure functions or interfaces without side effects.
+- Canvas demos separate logic (state updates, physics) from rendering (drawing commands) within utility modules, orchestrated by `requestAnimationFrame` loops in views.
+- Markdown rendering is implemented via a custom lightweight parser in `utils/markdown.ts` rather than an external library, supporting basic syntax and code blocks.

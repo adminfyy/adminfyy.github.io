@@ -1,0 +1,1 @@
+All child modules leverage a shared Vue.js ecosystem (Vue 2.7, Vue Router, Pinia) and TypeScript tooling, with Vite serving as the primary build engine for the main application and Vitest/Cypress providing a unified testing strategy.

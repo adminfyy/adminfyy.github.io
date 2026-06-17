@@ -1,4 +1,0 @@
-- The root `package.json` defines unified scripts for development, building, and testing across child modules.
-- Vite serves as the primary build tool for the main application, configured via `vite.config.ts` to output to the `docs` directory.
-- VuePress is managed as a separate workspace within `vdocs/`, invoked via npm prefix commands.
-- Cypress E2E tests are integrated into the root test workflow, targeting the built application preview.

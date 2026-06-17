@@ -1,3 +1,0 @@
-- `npm run dev`: Starts the main Vue.js application.
-- `npm run doc:dev`: Starts the VuePress documentation site.
-- `npm run test:e2e`: Runs end-to-end tests against the preview build.

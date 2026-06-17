@@ -1,9 +1,0 @@
-- Entry point: `src/main.ts` bootstraps the Vue app with Pinia for state management and Vue Router for navigation.
-- Layout: `src/App.vue` provides a global header with dynamic navigation links derived from router metadata, wrapping the `<router-view />`.
-- Routing: `src/router/index.ts` defines routes with lazy-loaded view components, separating core pages (Home, About) from feature demos (Agent Portal, WASM, Canvas).
-- State Management: Uses Pinia (`src/stores/counter.ts`) for global state, though currently minimal.
-- Feature Modules: 
-  - Blog System: Aggregates content from multiple sources (mock JSON, raw markdown files via `import.meta.glob`) in `src/utils/blogPosts.ts` and displays them in `HomeView.vue` and `BlogDetailView.vue`.
-  - Agent Tools: A dedicated portal (`AgentPortalView.vue`) that uses utility functions in `src/utils/agent.ts` to generate structured prompts for AI agents based on user input.
-  - Legacy Support: Contains a separate legacy Vue app structure in `src/apps/legacy/` with its own router and entry point, suggesting a migration or dual-app setup.
-- Utilities: `src/utils/` contains domain-specific logic for blog processing, agent prompt generation, and demo features (TicTacToe, WASM, Canvas).

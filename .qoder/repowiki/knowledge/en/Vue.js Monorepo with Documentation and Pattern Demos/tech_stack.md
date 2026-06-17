@@ -1,1 +1,0 @@
-Vite, Vue 2.7, VuePress, Cypress, Vitest, TypeScript

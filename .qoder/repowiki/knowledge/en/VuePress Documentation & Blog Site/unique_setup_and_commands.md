@@ -1,2 +1,2 @@
-- Development: `npm run dev` (executes `vuepress dev . --clean-cache`).
-- Production build: `npm run build` (executes `vuepress build . --clean-cache`).
+- Development: Run `npm run dev` (executes `vuepress dev . --clean-cache`) to start the local server.
+- Production Build: Run `npm run build` (executes `vuepress build . --clean-cache`) to generate static assets.

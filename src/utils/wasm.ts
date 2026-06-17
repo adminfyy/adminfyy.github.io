@@ -10,11 +10,22 @@
 
 import WabtModule from 'wabt'
 
+export const ARITH_WAT = `
+(module
+  (func (export "add") (param i32 i32) (result i32)
+    local.get 0 local.get 1 i32.add)
+  (func (export "sub") (param i32 i32) (result i32)
+    local.get 0 local.get 1 i32.sub)
+  (func (export "mul") (param i32 i32) (result i32)
+    local.get 0 local.get 1 i32.mul)
+)
+`
+
 // ─── Pre-built WASM binary: 32-bit integer arithmetic ───
 const ARITH_WASM_BYTES = new Uint8Array([
   0x00, 0x61, 0x73, 0x6d, 0x01, 0x00, 0x00, 0x00,
   0x01, 0x07, 0x01, 0x60, 0x02, 0x7f, 0x7f, 0x01, 0x7f,
-  0x03, 0x02, 0x01, 0x00,
+  0x03, 0x04, 0x03, 0x00, 0x00, 0x00,
   0x07, 0x19, 0x03,
   0x03, 0x61, 0x64, 0x64, 0x00, 0x00,
   0x03, 0x73, 0x75, 0x62, 0x00, 0x01,
@@ -38,7 +49,7 @@ export async function createArithModule(): Promise<WasmArithModule> {
 
 // ─── WAT-based modules (compiled at runtime via wabt) ───
 
-const FIB_WAT = `
+export const FIB_WAT = `
 (module
   (func (export "fib") (param $n i32) (result i32)
     (local $a i32) (local $b i32) (local $tmp i32) (local $i i32)
@@ -59,7 +70,7 @@ const FIB_WAT = `
 )
 `
 
-const PRIME_WAT = `
+export const PRIME_WAT = `
 (module
   (func (export "sumPrimes") (param $limit i32) (result i32)
     (local $sum i32) (local $i i32) (local $j i32) (local $isPrime i32)
@@ -95,6 +106,58 @@ export interface WasmPrimeModule {
   sumPrimes(limit: number): number
 }
 
+export const MATRIX_WAT = `
+(module
+  (memory (export "mem") 1)
+  (func (export "matMul")
+    (param $aOff i32) (param $bOff i32) (param $cOff i32)
+    (param $n i32)
+    (local $i i32) (local $j i32) (local $k i32)
+    (local $sum i32) (local $aik i32)
+    (local.set $i (i32.const 0))
+    (block $breakI
+      (loop $loopI
+        (br_if $breakI (i32.ge_s (local.get $i) (local.get $n)))
+        (local.set $j (i32.const 0))
+        (block $breakJ
+          (loop $loopJ
+            (br_if $breakJ (i32.ge_s (local.get $j) (local.get $n)))
+            (local.set $sum (i32.const 0))
+            (local.set $k (i32.const 0))
+            (block $breakK
+              (loop $loopK
+                (br_if $breakK (i32.ge_s (local.get $k) (local.get $n)))
+                ;; aik = mem[(i*n+k)*4 + aOff]
+                (local.set $aik
+                  (i32.load
+                    (i32.add (local.get $aOff)
+                      (i32.mul (i32.add (i32.mul (local.get $i) (local.get $n)) (local.get $k)) (i32.const 4)))))
+                ;; sum += aik * mem[(k*n+j)*4 + bOff]
+                (local.set $sum
+                  (i32.add (local.get $sum)
+                    (i32.mul (local.get $aik)
+                      (i32.load
+                        (i32.add (local.get $bOff)
+                          (i32.mul (i32.add (i32.mul (local.get $k) (local.get $n)) (local.get $j)) (i32.const 4)))))))
+                (local.set $k (i32.add (local.get $k) (i32.const 1)))
+                (br $loopK)))
+            ;; mem[(i*n+j)*4 + cOff] = sum
+            (i32.store
+              (i32.add (local.get $cOff)
+                (i32.mul (i32.add (i32.mul (local.get $i) (local.get $n)) (local.get $j)) (i32.const 4)))
+              (local.get $sum))
+            (local.set $j (i32.add (local.get $j) (i32.const 1)))
+            (br $loopJ)))
+        (local.set $i (i32.add (local.get $i) (i32.const 1)))
+        (br $loopI)))
+)
+`
+
+export interface WasmMatrixModule {
+  matMul(aOff: number, bOff: number, cOff: number, n: number): void
+  mem: WebAssembly.Memory
+}
+
 let wabtInstance: any = null
 
 async function getWabt() {
@@ -120,6 +183,41 @@ export async function createFibModule(): Promise<WasmFibModule> {
 export async function createPrimeModule(): Promise<WasmPrimeModule> {
   const instance = await compileWat(PRIME_WAT)
   return instance.exports as unknown as WasmPrimeModule
+}
+
+export async function createMatrixModule(): Promise<WasmMatrixModule> {
+  const instance = await compileWat(MATRIX_WAT)
+  return instance.exports as unknown as WasmMatrixModule
+}
+
+// ─── WASM matrix multiply using linear memory ───
+
+export async function wasmMatrixMul(n: number, a: number[][], b: number[][]): Promise<number[][]> {
+  const mod = await createMatrixModule()
+  const mem = mod.mem
+  const buf = new Int32Array(mem.buffer)
+  const aOff = 0
+  const bOff = n * n
+  const cOff = 2 * n * n
+
+  // Write matrices into WASM memory
+  for (let i = 0; i < n; i++)
+    for (let j = 0; j < n; j++) {
+      buf[aOff + i * n + j] = a[i][j]
+      buf[bOff + i * n + j] = b[i][j]
+    }
+
+  mod.matMul(aOff * 4, bOff * 4, cOff * 4, n)
+
+  // Read result back
+  const c: number[][] = []
+  for (let i = 0; i < n; i++) {
+    c.push([])
+    for (let j = 0; j < n; j++) {
+      c[i].push(buf[cOff + i * n + j])
+    }
+  }
+  return c
 }
 
 // ─── JS reference implementations ───

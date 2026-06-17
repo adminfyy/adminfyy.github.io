@@ -1,0 +1,3 @@
+- The root `package.json` acts as the central orchestrator, defining unified lifecycle scripts for the main application (`dev`, `build`) and the documentation site (`doc:dev`, `doc:build`) using npm prefix commands.
+- Build outputs are decoupled: the main SPA targets the `docs/` directory for GitHub Pages deployment, while the documentation site maintains its own build pipeline within `vdocs/`.
+- Testing infrastructure is centrally configured via `cypress.config.ts` and `vite.config.ts`, with end-to-end tests targeting the preview server of the main application, ensuring integrated quality gates across the primary user-facing module.
