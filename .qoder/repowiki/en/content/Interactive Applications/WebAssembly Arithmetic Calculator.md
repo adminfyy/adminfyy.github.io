@@ -6,7 +6,6 @@
 - [WasmView.vue](file://src/views/WasmView.vue)
 - [wasm.spec.ts](file://src/components/__tests__/wasm.spec.ts)
 - [package.json](file://package.json)
-- [README.md](file://README.md)
 </cite>
 
 ## Update Summary
@@ -14,7 +13,7 @@
 - Enhanced WasmView.vue with comprehensive performance benchmarking capabilities
 - Added support for four different WebAssembly modules (arithmetic, Fibonacci, prime sieve, matrix multiplication)
 - Implemented real-time visualization of benchmark results with charts and tables
-- Added WAT source code viewer with syntax highlighting and legends
+- Added WAT source code viewer with tabbed interface, syntax highlighting, and comprehensive benchmark system
 - Integrated hex dump functionality for WebAssembly binary inspection
 - Expanded testing coverage for all new features
 
@@ -39,7 +38,7 @@ This document provides comprehensive documentation for the WebAssembly Arithmeti
 
 - **Multi-module WebAssembly support**: Four distinct modules (arithmetic, Fibonacci, prime sieve, matrix multiplication)
 - **Real-time performance comparison**: Side-by-side JavaScript vs WebAssembly benchmarking
-- **Interactive WAT source viewer**: Human-readable WebAssembly Text Format with syntax highlighting
+- **Interactive WAT source viewer**: Human-readable WebAssembly Text Format with tabbed interface, syntax highlighting, and legends
 - **Hex dump inspection**: Raw WebAssembly binary analysis capabilities
 - **Visual benchmark results**: Chart-based performance comparison visualization
 - **Comprehensive testing suite**: Unit tests covering all mathematical operations and utilities
@@ -85,7 +84,6 @@ Package --> Utils
 - [wasm.spec.ts:1-145](file://src/components/__tests__/wasm.spec.ts#L1-L145)
 
 **Section sources**
-- [README.md:1-60](file://README.md#L1-L60)
 - [package.json:1-65](file://package.json#L1-L65)
 
 ## Core Components

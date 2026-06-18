@@ -18,6 +18,7 @@
 - [wasm.ts](file://src/utils/wasm.ts)
 - [agent-tools.ts](file://src/mock/agent-tools.ts)
 - [counter.ts](file://src/stores/counter.ts)
+- [WasmView.vue](file://src/views/WasmView.vue)
 </cite>
 
 ## Table of Contents
@@ -35,8 +36,10 @@
 ## Introduction
 This document explains how unit tests are implemented using the Vitest framework in this project. It covers test configuration, component testing patterns, assertion strategies, and best practices for Vue Single File Components (SFCs), utility functions, and state management modules. Practical examples are drawn from the existing test suite, including agent prompts, canvas operations, game logic, and WASM utilities. Guidance is also provided on setup and teardown, test isolation, and debugging strategies.
 
+**Updated** Enhanced coverage of comprehensive WAT source module testing infrastructure and validation of WebAssembly Text Format exports.
+
 ## Project Structure
-The project integrates Vitest with Vite and Vue 2. Tests are colocated under a dedicated folder alongside components and utilities. The test environment leverages jsdom via Vitest’s configuration, enabling DOM APIs for component and utility tests.
+The project integrates Vitest with Vite and Vue 2. Tests are colocated under a dedicated folder alongside components and utilities. The test environment leverages jsdom via Vitest's configuration, enabling DOM APIs for component and utility tests.
 
 ```mermaid
 graph TB
@@ -152,7 +155,7 @@ Mocking strategies:
 **Section sources**
 - [agent.spec.ts:1-36](file://src/components/__tests__/agent.spec.ts#L1-L36)
 - [agent.ts:1-47](file://src/utils/agent.ts#L1-L47)
-- [canvas.spec.ts:1-131](file://src/components/__tests__/canvas.spec.ts#L1-L131)
+- [canvas.spec.ts:1-194](file://src/components/__tests__/canvas.spec.ts#L1-L194)
 - [canvas.ts:1-204](file://src/utils/canvas.ts#L1-L204)
 - [ticTacToe.spec.ts:1-32](file://src/components/__tests__/ticTacToe.spec.ts#L1-L32)
 - [ticTacToe.ts:1-55](file://src/utils/ticTacToe.ts#L1-L55)
@@ -170,17 +173,33 @@ Example patterns:
 - [counter.ts:1-17](file://src/stores/counter.ts#L1-L17)
 
 ### WASM Utilities Testing
-- Validate numeric outputs for mathematical functions and ensure array shapes/types match expectations.
-- For Mandelbrot computations, assert array length and membership of specific indices based on known properties.
-- Compare iterative and recursive implementations to ensure functional parity for small inputs.
+**Updated** Comprehensive testing infrastructure for WebAssembly Text Format (WAT) source modules and their exports.
+
+The WASM testing suite now includes extensive validation of WAT source modules and their exported functions:
+
+- **WAT Source Validation**: Tests ensure each WAT module contains proper exports and instruction sets
+- **Arithmetic Module Testing**: Validates add, sub, and mul operations with both JS and WASM implementations
+- **Fibonacci Module Testing**: Tests recursive algorithm implementation with loop structures and branching
+- **Prime Number Testing**: Validates prime sieve algorithm with nested loops and conditional logic
+- **Matrix Multiplication Testing**: Tests linear memory operations with load/store instructions
+- **Benchmarking Infrastructure**: Validates performance measurement utilities
+- **Hex Dump Utilities**: Tests binary data visualization and formatting
+
+Key testing patterns:
+- **Export Validation**: Each WAT module is verified to contain expected exports using string containment assertions
+- **Instruction Verification**: Specific WebAssembly instructions are checked for presence in compiled modules
+- **Memory Export Testing**: Validates memory exports and linear memory access patterns
+- **Loop Structure Validation**: Ensures control flow constructs like loops and branches are properly implemented
+- **Integration Testing**: Compares WASM module outputs with corresponding JavaScript implementations
 
 Mocking and async handling:
-- WASM instantiation is asynchronous; tests handle async via async/await patterns.
-- Use typed arrays and numeric assertions to validate correctness.
+- WASM instantiation is asynchronous; tests handle async via async/await patterns
+- WABT (WebAssembly Binary Toolkit) is lazily initialized and cached for performance
+- Memory operations are validated through typed array access patterns
 
 **Section sources**
-- [wasm.spec.ts:1-97](file://src/components/__tests__/wasm.spec.ts#L1-L97)
-- [wasm.ts:1-163](file://src/utils/wasm.ts#L1-L163)
+- [wasm.spec.ts:1-145](file://src/components/__tests__/wasm.spec.ts#L1-L145)
+- [wasm.ts:1-298](file://src/utils/wasm.ts#L1-L298)
 
 ### International Trade Utilities Testing
 - Validate financial calculations and guard clauses for invalid inputs.
@@ -195,6 +214,11 @@ Mocking and async handling:
 - Boolean and enum checks for game logic outcomes.
 - Typed array and length checks for WASM outputs.
 
+**Updated** Enhanced assertion strategies for WAT source validation including:
+- String containment assertions for WAT module exports and instruction sets
+- Module structure validation ensuring proper WAT syntax and formatting
+- Memory export verification for linear memory access patterns
+
 Mock-driven validations:
 - Track method invocations on mocked contexts to ensure rendering steps occur.
 - Validate that fallbacks and guards produce finite, reasonable results.
@@ -203,7 +227,7 @@ Mock-driven validations:
 - [agent.spec.ts:6-34](file://src/components/__tests__/agent.spec.ts#L6-L34)
 - [canvas.spec.ts:78-128](file://src/components/__tests__/canvas.spec.ts#L78-L128)
 - [ticTacToe.spec.ts:5-31](file://src/components/__tests__/ticTacToe.spec.ts#L5-L31)
-- [wasm.spec.ts:37-95](file://src/components/__tests__/wasm.spec.ts#L37-L95)
+- [wasm.spec.ts:107-143](file://src/components/__tests__/wasm.spec.ts#L107-L143)
 - [overseasExport.spec.ts:8-60](file://src/components/__tests__/overseasExport.spec.ts#L8-L60)
 
 ### Async Operations and Canvas Rendering
@@ -239,7 +263,7 @@ Note: The current component tests demonstrate prop rendering; future tests can e
 - Lifecycle testing: Mount components and assert side effects captured during mount/update cycles.
 - Computed properties: Import getters from Pinia stores and assert derived values based on state.
 
-Note: This project’s store tests focus on getters and actions; lifecycle and computed property tests can be added similarly by mounting components and asserting reactive behavior.
+Note: This project's store tests focus on getters and actions; lifecycle and computed property tests can be added similarly by mounting components and asserting reactive behavior.
 
 **Section sources**
 - [counter.ts:8-15](file://src/stores/counter.ts#L8-L15)
@@ -300,9 +324,9 @@ T6 -.-> PINIA
 
 **Section sources**
 - [agent.spec.ts:1-36](file://src/components/__tests__/agent.spec.ts#L1-L36)
-- [canvas.spec.ts:1-131](file://src/components/__tests__/canvas.spec.ts#L1-L131)
+- [canvas.spec.ts:1-194](file://src/components/__tests__/canvas.spec.ts#L1-L194)
 - [ticTacToe.spec.ts:1-32](file://src/components/__tests__/ticTacToe.spec.ts#L1-L32)
-- [wasm.spec.ts:1-97](file://src/components/__tests__/wasm.spec.ts#L1-L97)
+- [wasm.spec.ts:1-145](file://src/components/__tests__/wasm.spec.ts#L1-L145)
 - [HelloWorld.spec.ts:1-12](file://src/components/__tests__/HelloWorld.spec.ts#L1-L12)
 
 ## Performance Considerations
@@ -311,7 +335,11 @@ T6 -.-> PINIA
 - Use targeted assertions: Validate only what is necessary to keep tests fast and maintainable.
 - Parallel execution: Vitest runs tests in parallel by default; ensure tests are isolated to prevent flakiness.
 
-[No sources needed since this section provides general guidance]
+**Updated** WASM performance considerations:
+- WABT (WebAssembly Binary Toolkit) is lazily initialized and cached to avoid repeated initialization overhead
+- WASM module compilation is expensive; tests leverage caching mechanisms to minimize repeated parsing
+- Memory operations are validated through efficient typed array access patterns rather than full module instantiation
+- Benchmark utilities provide performance measurement infrastructure for comparing WASM vs JavaScript implementations
 
 ## Troubleshooting Guide
 Common issues and resolutions:
@@ -321,6 +349,13 @@ Common issues and resolutions:
 - WASM instantiation failures: Wrap async calls in async/await and validate returned exports and typed arrays.
 - Pinia store tests: Import the store definition directly and invoke state/getter/action functions without mounting.
 
+**Updated** WASM troubleshooting:
+- WABT initialization failures: Ensure wabt package is properly installed and accessible; tests include lazy initialization with error handling
+- WAT compilation errors: Validate WAT syntax and ensure proper module structure with exports and function definitions
+- Memory access violations: Verify linear memory bounds and proper offset calculations for matrix operations
+- Module export mismatches: Check that WAT modules declare expected exports and function signatures
+- Performance benchmarking issues: Ensure proper timing measurements and iteration counts for reliable comparisons
+
 **Section sources**
 - [tsconfig.vitest.json:4-8](file://tsconfig.vitest.json#L4-L8)
 - [HelloWorld.spec.ts:3](file://src/components/__tests__/HelloWorld.spec.ts#L3)
@@ -329,16 +364,16 @@ Common issues and resolutions:
 - [counter.ts:1-17](file://src/stores/counter.ts#L1-L17)
 
 ## Conclusion
-This project demonstrates robust unit testing with Vitest across Vue components, utility functions, and state management modules. By leveraging jsdom, @vue/test-utils, and targeted mocks, tests remain fast, deterministic, and maintainable. The provided examples serve as templates for testing prompts, canvas rendering, game logic, and WASM computations, with clear patterns for setup, isolation, and debugging.
+This project demonstrates robust unit testing with Vitest across Vue components, utility functions, and state management modules. By leveraging jsdom, @vue/test-utils, and targeted mocks, tests remain fast, deterministic, and maintainable. The enhanced WASM testing infrastructure provides comprehensive validation of WebAssembly Text Format modules, ensuring proper exports, instruction sets, and memory operations. The provided examples serve as templates for testing prompts, canvas rendering, game logic, and WASM computations, with clear patterns for setup, isolation, and debugging.
 
-[No sources needed since this section summarizes without analyzing specific files]
+**Updated** The comprehensive WAT source module testing validates the integrity of WebAssembly implementations, ensuring that compiled modules meet expected specifications and provide reliable functionality across arithmetic operations, mathematical algorithms, and memory-managed computations.
 
 ## Appendices
 
 ### Setup and Teardown Procedures
 - Global setup: Configure Vitest environment and TypeScript types as shown in the project configuration.
 - Per-test setup: Use describe blocks to group related tests and share common fixtures (e.g., mock configs).
-- Teardown: No explicit teardown is required for pure function tests; for mounted components, rely on VTU’s automatic cleanup.
+- Teardown: No explicit teardown is required for pure function tests; for mounted components, rely on VTU's automatic cleanup.
 
 **Section sources**
 - [package.json:21](file://package.json#L21)
@@ -350,14 +385,27 @@ This project demonstrates robust unit testing with Vitest across Vue components,
 - Use mocks to replace external dependencies (canvas context, WASM modules).
 - Keep component tests self-contained by passing all required props and stubbing child components if necessary.
 
+**Updated** WASM test isolation:
+- WABT instance is lazily initialized and cached per test process to avoid conflicts
+- WASM module instances are created fresh for each test to prevent state leakage
+- Memory buffers are properly managed and cleaned up after each test execution
+- Export validation tests operate on static WAT strings without side effects
+
 **Section sources**
 - [canvas.spec.ts:78-128](file://src/components/__tests__/canvas.spec.ts#L78-L128)
 - [wasm.spec.ts:44](file://src/components/__tests__/wasm.spec.ts#L44)
 
 ### Debugging Strategies
 - Add console logs within tests temporarily to inspect intermediate values.
-- Use Vitest’s verbose mode to print assertion messages and stack traces.
+- Use Vitest's verbose mode to print assertion messages and stack traces.
 - For component tests, log wrapper HTML or attributes to verify rendering.
+
+**Updated** WASM debugging strategies:
+- Enable WABT debug logging for compilation issues and parse errors
+- Use hex dump utilities to inspect compiled WASM binary representations
+- Validate WAT source strings for proper syntax and export declarations
+- Monitor memory access patterns and linear memory boundaries during tests
+- Compare WASM and JavaScript implementation outputs for debugging discrepancies
 
 **Section sources**
 - [package.json:21](file://package.json#L21)
