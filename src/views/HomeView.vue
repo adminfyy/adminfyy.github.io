@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { getAllBlogPosts, getBlogStats } from '@/utils/blogPosts'
-import type { BlogPost } from '@/utils/blogPosts'
+import { getAllBlogPosts, getBlogStats } from "@/utils/blogPosts";
+import type { BlogPost } from "@/utils/blogPosts";
 
-const posts = getAllBlogPosts()
-const stats = getBlogStats()
-const featuredPosts: BlogPost[] = posts.slice(0, 3)
+const posts = getAllBlogPosts();
+const stats = getBlogStats();
+const featuredPosts: BlogPost[] = posts.slice(0, 3);
 </script>
 
 <template>
@@ -14,16 +14,12 @@ const featuredPosts: BlogPost[] = posts.slice(0, 3)
         <p class="kicker">🌟 技术改变生活</p>
         <h1>用代码探索世界，以工程驱动创新</h1>
         <p class="description">
-          记录前端工程实践、设计模式研究与 Agent 工具开发，展示技术如何赋能日常生活。
+          记录前端工程实践、设计模式研究与浏览器实验，展示技术如何赋能日常生活。
         </p>
         <div class="hero-actions">
           <router-link class="btn primary" to="/about">
             <span class="btn-icon">👨‍💻</span>
             关于我
-          </router-link>
-          <router-link class="btn ghost" to="/agent-portal">
-            <span class="btn-icon">🚀</span>
-            Agent Portal
           </router-link>
         </div>
       </div>
@@ -57,7 +53,12 @@ const featuredPosts: BlogPost[] = posts.slice(0, 3)
         精选文章
       </h2>
       <div class="featured-grid">
-        <article v-for="(post, index) in featuredPosts" :key="post.id" class="featured-card" :style="{ animationDelay: `${index * 0.1}s` }">
+        <article
+          v-for="(post, index) in featuredPosts"
+          :key="post.id"
+          class="featured-card"
+          :style="{ animationDelay: `${index * 0.1}s` }"
+        >
           <div class="card-header">
             <p class="meta">{{ post.category }}</p>
             <span class="source-badge">{{ post.source }}</span>
@@ -74,7 +75,12 @@ const featuredPosts: BlogPost[] = posts.slice(0, 3)
 
     <section class="blog-layout">
       <article class="post-list">
-        <div v-for="(post, index) in posts" :key="post.id" class="post-card" :style="{ animationDelay: `${index * 0.05}s` }">
+        <div
+          v-for="(post, index) in posts"
+          :key="post.id"
+          class="post-card"
+          :style="{ animationDelay: `${index * 0.05}s` }"
+        >
           <div class="card-top">
             <p class="meta">{{ post.category }}</p>
             <span class="source-badge small">{{ post.source }}</span>
@@ -102,15 +108,19 @@ const featuredPosts: BlogPost[] = posts.slice(0, 3)
             内容来源
           </h3>
           <p>
-            自动读取 <code>/vdocs/blog/*.md</code> 与 <code>/pattern/*.{md,js,html}</code> 并注入主站博客流。
+            自动读取 <code>/vdocs/blog/*.md</code> 与
+            <code>/pattern/*.{md,js,html}</code> 并注入主站博客流。
           </p>
         </div>
         <div class="panel">
           <h3>
             <span class="panel-icon">🌐</span>
-            工具门户
+            WASM 教学
           </h3>
-          <p>访问 <code>/agent-portal</code> 获取 Agent Prompt 工具门户。</p>
+          <p>
+            想了解 WebAssembly？从字节码、WAT 到线性内存，查看
+            <router-link to="/wasm">WASM 教学</router-link>。
+          </p>
         </div>
         <div class="panel stats-panel">
           <h3>
@@ -146,8 +156,14 @@ const featuredPosts: BlogPost[] = posts.slice(0, 3)
 }
 
 @keyframes rise-in {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ─── Hero ─── */
@@ -164,12 +180,19 @@ const featuredPosts: BlogPost[] = posts.slice(0, 3)
 }
 
 .hero::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(circle at 74% 8%, rgba(255,255,255,0.12), transparent 35%),
-    radial-gradient(circle at 22% 90%, rgba(167,139,250,0.18), transparent 40%);
+  background: radial-gradient(
+      circle at 74% 8%,
+      rgba(255, 255, 255, 0.12),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 22% 90%,
+      rgba(167, 139, 250, 0.18),
+      transparent 40%
+    );
   pointer-events: none;
 }
 
@@ -207,7 +230,7 @@ const featuredPosts: BlogPost[] = posts.slice(0, 3)
 .btn {
   border-radius: var(--radius-pill);
   padding: 0.55rem 1.1rem;
-  border: 1px solid rgba(255,255,255,0.25);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -216,7 +239,9 @@ const featuredPosts: BlogPost[] = posts.slice(0, 3)
   transition: all var(--duration-normal) var(--ease-out);
 }
 
-.btn-icon { font-size: 1.1em; }
+.btn-icon {
+  font-size: 1.1em;
+}
 
 .btn.primary {
   color: var(--accent-700);
@@ -232,11 +257,11 @@ const featuredPosts: BlogPost[] = posts.slice(0, 3)
 
 .btn.ghost {
   color: #fff;
-  background: rgba(255,255,255,0.12);
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .btn.ghost:hover {
-  background: rgba(255,255,255,0.22);
+  background: rgba(255, 255, 255, 0.22);
   transform: translateY(-2px);
 }
 
@@ -248,8 +273,8 @@ const featuredPosts: BlogPost[] = posts.slice(0, 3)
 }
 
 .metric {
-  border: 1px solid rgba(255,255,255,0.18);
-  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-md);
   padding: 0.75rem;
   text-align: center;
@@ -258,10 +283,13 @@ const featuredPosts: BlogPost[] = posts.slice(0, 3)
 
 .metric:hover {
   transform: translateY(-3px);
-  border-color: rgba(255,255,255,0.32);
+  border-color: rgba(255, 255, 255, 0.32);
 }
 
-.metric-icon { font-size: 1.6rem; margin-bottom: 0.3rem; }
+.metric-icon {
+  font-size: 1.6rem;
+  margin-bottom: 0.3rem;
+}
 
 .metric p {
   font-size: 10px;
@@ -295,7 +323,9 @@ const featuredPosts: BlogPost[] = posts.slice(0, 3)
   font-size: 1.1rem;
 }
 
-.section-icon { font-size: 1.2em; }
+.section-icon {
+  font-size: 1.2em;
+}
 
 .featured-grid {
   display: grid;
@@ -314,7 +344,7 @@ const featuredPosts: BlogPost[] = posts.slice(0, 3)
 }
 
 .featured-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -331,7 +361,9 @@ const featuredPosts: BlogPost[] = posts.slice(0, 3)
   box-shadow: var(--shadow-md);
 }
 
-.featured-card:hover::before { transform: scaleX(1); }
+.featured-card:hover::before {
+  transform: scaleX(1);
+}
 
 .card-header {
   display: flex;
@@ -351,7 +383,7 @@ const featuredPosts: BlogPost[] = posts.slice(0, 3)
 .source-badge {
   padding: 0.15rem 0.5rem;
   background: var(--accent-bg-subtle);
-  border: 1px solid rgba(99,102,241,0.18);
+  border: 1px solid rgba(99, 102, 241, 0.18);
   border-radius: var(--radius-pill);
   font-size: 10px;
   color: var(--accent-600);
@@ -387,10 +419,16 @@ const featuredPosts: BlogPost[] = posts.slice(0, 3)
   transition: color var(--duration-fast) ease;
 }
 
-.read-link:hover { color: var(--accent-500); }
+.read-link:hover {
+  color: var(--accent-500);
+}
 
-.arrow { transition: transform var(--duration-fast) ease; }
-.read-link:hover .arrow { transform: translateX(4px); }
+.arrow {
+  transition: transform var(--duration-fast) ease;
+}
+.read-link:hover .arrow {
+  transform: translateX(4px);
+}
 
 /* ─── Blog layout ─── */
 .blog-layout {
@@ -399,7 +437,10 @@ const featuredPosts: BlogPost[] = posts.slice(0, 3)
   gap: 1.25rem;
 }
 
-.post-list { display: grid; gap: 0.75rem; }
+.post-list {
+  display: grid;
+  gap: 0.75rem;
+}
 
 .post-card {
   border: 1px solid var(--color-border);
@@ -442,10 +483,17 @@ h2 {
   font-size: 0.88rem;
 }
 
-.content-preview summary:hover { color: var(--accent-500); }
+.content-preview summary:hover {
+  color: var(--accent-500);
+}
 
-.expand-icon { font-size: 0.75em; transition: transform var(--duration-normal) ease; }
-.content-preview[open] .expand-icon { transform: rotate(180deg); }
+.expand-icon {
+  font-size: 0.75em;
+  transition: transform var(--duration-normal) ease;
+}
+.content-preview[open] .expand-icon {
+  transform: rotate(180deg);
+}
 
 pre {
   margin-top: 0.5rem;
@@ -461,7 +509,10 @@ pre {
 }
 
 /* ─── Sidebar ─── */
-.sidebar { display: grid; gap: 0.75rem; }
+.sidebar {
+  display: grid;
+  gap: 0.75rem;
+}
 
 .panel {
   padding: 1rem;
@@ -471,11 +522,13 @@ pre {
   transition: border-color var(--duration-fast) ease;
 }
 
-.panel:hover { border-color: var(--color-border-hover); }
+.panel:hover {
+  border-color: var(--color-border-hover);
+}
 
 .panel.highlight {
   background: linear-gradient(135deg, var(--accent-bg-subtle), var(--bg-0));
-  border-color: rgba(99,102,241,0.2);
+  border-color: rgba(99, 102, 241, 0.2);
 }
 
 .panel h3 {
@@ -487,12 +540,18 @@ pre {
   color: var(--color-heading);
 }
 
-.panel-icon { font-size: 1.1em; }
-.panel p { line-height: 1.6; opacity: 0.88; font-size: 0.92rem; }
+.panel-icon {
+  font-size: 1.1em;
+}
+.panel p {
+  line-height: 1.6;
+  opacity: 0.88;
+  font-size: 0.92rem;
+}
 
 .panel code {
   background: var(--accent-bg-subtle);
-  border: 1px solid rgba(99,102,241,0.12);
+  border: 1px solid rgba(99, 102, 241, 0.12);
   border-radius: 4px;
   padding: 0.12rem 0.35rem;
   font-family: var(--font-mono);
@@ -500,8 +559,14 @@ pre {
   color: var(--accent-600);
 }
 
-.stats-panel { background: var(--bg-0); }
-.stats-list { display: grid; gap: 0.5rem; margin-top: 0.4rem; }
+.stats-panel {
+  background: var(--bg-0);
+}
+.stats-list {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+}
 
 .stat-item {
   display: flex;
@@ -510,23 +575,45 @@ pre {
   padding: 0.5rem 0.65rem;
   background: var(--accent-bg-subtle);
   border-radius: var(--radius-sm);
-  border: 1px solid rgba(99,102,241,0.08);
+  border: 1px solid rgba(99, 102, 241, 0.08);
 }
 
-.stat-label { font-size: 0.85rem; color: var(--color-text-secondary); }
-.stat-value { font-size: 1rem; font-weight: 600; color: var(--accent-500); }
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+.stat-value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent-500);
+}
 
 /* ─── Responsive ─── */
 @media (min-width: 960px) {
-  .hero { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
-  .featured-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .blog-layout { grid-template-columns: minmax(0, 2fr) minmax(0, 0.9fr); }
+  .hero {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  }
+  .featured-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .blog-layout {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 0.9fr);
+  }
 }
 
 @media (max-width: 640px) {
-  .hero { padding: 1.5rem; }
-  .hero-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .hero h1 { font-size: 1.6rem; }
-  .btn { width: 100%; justify-content: center; }
+  .hero {
+    padding: 1.5rem;
+  }
+  .hero-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 </style>

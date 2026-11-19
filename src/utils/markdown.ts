@@ -1,187 +1,153 @@
-const escapeHtml = (input: string) =>
-  input
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;')
+/**
+ * 极简 Markdown 渲染器：只覆盖聊天回复常见语法，
+ * 全部内容先做 HTML 转义，避免模型输出注入脚本。
+ */
 
-const inline = (line: string) =>
-  line
-    .replace(/`([^`]+)`/g, '<code>$1</code>')
-    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-    .replace(/\*([^*]+)\*/g, '<em>$1</em>')
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noreferrer">$1</a>')
-    .replace(/~~([^~]+)~~/g, '<del>$1</del>')
+const ESCAPE_MAP: Record<string, string> = {
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;",
+  "'": "&#39;",
+};
 
-export function renderMarkdown(markdown: string): string {
-  const normalized = markdown.replace(/\r\n/g, '\n')
-  const codeBlocks: string[] = []
+function escapeHtml(text: string): string {
+  return text.replace(/[&<>"']/g, (char) => ESCAPE_MAP[char] || char);
+}
 
-  // 处理代码块，保留语言标识
-  const withoutCode = normalized.replace(/```(\w+)?\n([\s\S]*?)```/g, (_, lang = '', code = '') => {
-    const safeCode = escapeHtml(code.trimEnd())
-    const block = `<pre><code class="lang-${lang}">${safeCode}</code></pre>`
-    codeBlocks.push(block)
-    return `@@CODE_BLOCK_${codeBlocks.length - 1}@@`
-  })
+function renderInline(raw: string): string {
+  const codes: string[] = [];
 
-  const lines = withoutCode.split('\n')
-  const html: string[] = []
-  let paragraph: string[] = []
-  let listType: 'ul' | 'ol' | '' = ''
-  let inTable = false
-  let tableRows: string[] = []
+  // 先抽出行内代码，避免内部星号、链接语法被二次解析
+  let text = raw.replace(/`([^`\n]+)`/g, (_, code: string) => {
+    codes.push(code);
+    return `\uE000${codes.length - 1}\uE001`;
+  });
+
+  text = escapeHtml(text);
+
+  text = text.replace(
+    /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+    '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>'
+  );
+  text = text.replace(/\*\*([^*\n]+)\*\*/g, "<strong>$1</strong>");
+  text = text.replace(/(^|[^*])\*([^*\n]+)\*/g, "$1<em>$2</em>");
+
+  return text.replace(
+    /\uE000(\d+)\uE001/g,
+    (_, index: string) => `<code>${escapeHtml(codes[Number(index)])}</code>`
+  );
+}
+
+const FENCE = /^\s*```([\w-]*)\s*$/;
+const LIST_ITEM = /^\s*[-*]\s+(.*)$/;
+const ORDERED_ITEM = /^\s*\d+\.\s+(.*)$/;
+const HEADING = /^(#{1,4})\s+(.*)$/;
+
+export function renderMarkdown(source: string): string {
+  if (!source) return "";
+
+  const lines = source.replace(/\r\n/g, "\n").split("\n");
+  const html: string[] = [];
+  let paragraph: string[] = [];
+  let index = 0;
 
   const flushParagraph = () => {
-    if (!paragraph.length) return
-    html.push(`<p>${inline(paragraph.join(' '))}</p>`)
-    paragraph = []
-  }
+    if (!paragraph.length) return;
+    html.push(`<p>${paragraph.map(renderInline).join("<br>")}</p>`);
+    paragraph = [];
+  };
 
-  const flushList = () => {
-    if (!listType) return
-    html.push(`</${listType}>`)
-    listType = ''
-  }
+  while (index < lines.length) {
+    const line = lines[index];
 
-  const flushTable = () => {
-    if (!inTable || !tableRows.length) return
-    html.push('<table>')
-    tableRows.forEach((row, index) => {
-      const tag = index === 0 ? 'th' : 'td'
-      html.push(`<tr>${row}</tr>`)
-    })
-    html.push('</table>')
-    inTable = false
-    tableRows = []
-  }
-
-  lines.forEach((rawLine) => {
-    const line = rawLine.trim()
-    const heading = line.match(/^(#{1,6})\s+(.+)$/)
-    const ul = line.match(/^[-*+]\s+\[([ xX])\]\s+(.+)$/) // 任务列表
-    const ulNormal = line.match(/^[-*+]\s+(.+)$/)
-    const ol = line.match(/^\d+\.\s+(.+)$/)
-    const quote = line.match(/^>\s?(.+)$/)
-    const tableRow = line.match(/^\|(.+)\|$/)
-    const tableSeparator = line.match(/^\|[\s\-:|]+\|$/)
-    const hr = line.match(/^---+$/i)
-    const img = line.match(/^!\[([^\]]*)\]\(([^)]+)\)$/)
-
-    if (!line) {
-      flushParagraph()
-      flushList()
-      flushTable()
-      return
+    const fence = line.match(FENCE);
+    if (fence) {
+      flushParagraph();
+      const language = fence[1];
+      const code: string[] = [];
+      index += 1;
+      while (index < lines.length && !FENCE.test(lines[index])) {
+        code.push(lines[index]);
+        index += 1;
+      }
+      index += 1;
+      const className = language ? ` class="language-${language}"` : "";
+      html.push(
+        `<pre><code${className}>${escapeHtml(code.join("\n"))}</code></pre>`
+      );
+      continue;
     }
 
-    if (line.startsWith('@@CODE_BLOCK_')) {
-      flushParagraph()
-      flushList()
-      flushTable()
-      html.push(line)
-      return
+    if (!line.trim()) {
+      flushParagraph();
+      index += 1;
+      continue;
     }
 
+    const heading = line.match(HEADING);
     if (heading) {
-      flushParagraph()
-      flushList()
-      flushTable()
-      const level = heading[1].length
-      html.push(`<h${level}>${inline(heading[2])}</h${level}>`)
-      return
+      flushParagraph();
+      const level = heading[1].length;
+      html.push(`<h${level}>${renderInline(heading[2])}</h${level}>`);
+      index += 1;
+      continue;
     }
 
-    if (img) {
-      flushParagraph()
-      flushList()
-      flushTable()
-      html.push(`<img src="${img[2]}" alt="${img[1]}" />`)
-      return
-    }
-
-    if (hr) {
-      flushParagraph()
-      flushList()
-      flushTable()
-      html.push('<hr />')
-      return
-    }
-
-    if (quote) {
-      flushParagraph()
-      flushList()
-      flushTable()
-      html.push(`<blockquote>${inline(quote[1])}</blockquote>`)
-      return
-    }
-
-    // 处理表格
-    if (tableRow) {
-      flushParagraph()
-      flushList()
-      if (!inTable) {
-        inTable = true
-        tableRows = []
+    if (LIST_ITEM.test(line)) {
+      flushParagraph();
+      const items: string[] = [];
+      while (index < lines.length && LIST_ITEM.test(lines[index])) {
+        items.push((lines[index].match(LIST_ITEM) as RegExpMatchArray)[1]);
+        index += 1;
       }
-      const cells = tableRow[1].split('|').map(cell => cell.trim())
-      const rowHtml = cells.map(cell => `<td>${inline(cell)}</td>`).join('')
-      tableRows.push(rowHtml)
-      return
+      html.push(
+        `<ul>${items
+          .map((item) => `<li>${renderInline(item)}</li>`)
+          .join("")}</ul>`
+      );
+      continue;
     }
 
-    if (tableSeparator) {
-      // 跳过表格分隔线
-      if (tableRows.length > 0) {
-        tableRows[0] = tableRows[0].replace(/<td>/g, '<th>').replace(/<\/td>/g, '</th>')
+    if (ORDERED_ITEM.test(line)) {
+      flushParagraph();
+      const items: string[] = [];
+      while (index < lines.length && ORDERED_ITEM.test(lines[index])) {
+        items.push((lines[index].match(ORDERED_ITEM) as RegExpMatchArray)[1]);
+        index += 1;
       }
-      return
+      html.push(
+        `<ol>${items
+          .map((item) => `<li>${renderInline(item)}</li>`)
+          .join("")}</ol>`
+      );
+      continue;
     }
 
-    if (ul) {
-      // 任务列表
-      flushParagraph()
-      flushList()
-      flushTable()
-      const checked = ul[1] !== ' ' && ul[1] !== ''
-      const checkbox = `<input type="checkbox" ${checked ? 'checked' : ''} disabled />`
-      html.push(`<ul class="task-list"><li>${checkbox} ${inline(ul[2])}</li></ul>`)
-      return
-    }
-
-    if (ulNormal) {
-      flushParagraph()
-      flushTable()
-      if (listType !== 'ul') {
-        flushList()
-        html.push('<ul>')
-        listType = 'ul'
+    if (/^\s*>\s?/.test(line)) {
+      flushParagraph();
+      const quotes: string[] = [];
+      while (index < lines.length && /^\s*>\s?/.test(lines[index])) {
+        quotes.push(lines[index].replace(/^\s*>\s?/, ""));
+        index += 1;
       }
-      html.push(`<li>${inline(ulNormal[1])}</li>`)
-      return
+      html.push(
+        `<blockquote>${quotes.map(renderInline).join("<br>")}</blockquote>`
+      );
+      continue;
     }
 
-    if (ol) {
-      flushParagraph()
-      flushTable()
-      if (listType !== 'ol') {
-        flushList()
-        html.push('<ol>')
-        listType = 'ol'
-      }
-      html.push(`<li>${inline(ol[1])}</li>`)
-      return
+    if (/^\s*([-*_])\1{2,}\s*$/.test(line)) {
+      flushParagraph();
+      html.push("<hr>");
+      index += 1;
+      continue;
     }
 
-    paragraph.push(inline(line))
-  })
+    paragraph.push(line);
+    index += 1;
+  }
 
-  flushParagraph()
-  flushList()
-  flushTable()
-
-  return html
-    .join('\n')
-    .replace(/@@CODE_BLOCK_(\d+)@@/g, (_, i) => codeBlocks[Number(i)] || '')
+  flushParagraph();
+  return html.join("");
 }

@@ -1,0 +1,30 @@
+# 技术改变生活
+
+> adminfoo 的个人技术站点：前端工程、AI 对话、博客与浏览器实验。作者为前端工程师，9 年以上经验，技术栈覆盖 Vue2 / Vue3、React、Electron 桌面端与 HarmonyOS 应用，base 厦门。
+
+## 作者
+
+- 姓名：adminfoo
+- 职位：前端工程师
+- 经验：9 年以上
+- 技术栈：Vue2、Vue3、React、TypeScript、Electron、HarmonyOS、Vite、Vitest
+- 所在地：福建 · 厦门
+- 求职状态：正在寻找前端岗位机会（Vue2/3、React、Electron、HarmonyOS 方向）
+- GitHub：https://github.com/adminfyy
+- 简历：https://2yjs.top/about
+
+## 主要页面
+
+- [AI Chat](https://2yjs.top/)：与站点 AI 助手对话，了解作者经历、技术栈与项目经验。
+- [博客](https://2yjs.top/blog)：前端工程化、Vue/React、Electron、HarmonyOS 等实践笔记。
+- [关于与简历](https://2yjs.top/about)：作者简介、核心技能、工作内容与联系方式。
+- [Canvas 实验](https://2yjs.top/canvas)：Canvas 图形与动画实验。
+- [3D 实验](https://2yjs.top/three)：基于 Three.js 的三维场景实验。
+- [WASM 教学](https://2yjs.top/wasm)：从字节码、WAT 语法到线性内存与性能对比的 WebAssembly 入门教程。
+- [小游戏](https://2yjs.top/tic-tac-toe)：井字棋小游戏。
+- [Pretext](https://2yjs.top/pretext)：文本排版实验。
+
+## 说明
+
+- 站点为 Vue 单页应用，页面内容公开可访问；对话接口需要访问口令。
+- 引用内容请注明来源：技术改变生活（https://2yjs.top）。

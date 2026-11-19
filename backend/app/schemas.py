@@ -1,6 +1,6 @@
-from datetime import datetime
+from datetime import datetime, timezone
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_serializer
 
 
 def to_camel(name: str) -> str:
@@ -14,6 +14,15 @@ class APIModel(BaseModel):
         populate_by_name=True,
         from_attributes=True,
     )
+
+    @field_serializer("created_at", "updated_at", check_fields=False)
+    def serialize_datetime(self, value: datetime | None) -> str | None:
+        """数据库存的是无时区 UTC，这里补上时区，避免前端按本地时间解析。"""
+        if value is None:
+            return None
+        if value.tzinfo is None:
+            value = value.replace(tzinfo=timezone.utc)
+        return value.isoformat().replace("+00:00", "Z")
 
 
 class ConversationOut(APIModel):

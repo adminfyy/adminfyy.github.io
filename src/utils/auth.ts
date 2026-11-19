@@ -38,3 +38,14 @@ export function login(password: string): Promise<AuthStatus> {
     body: JSON.stringify({ password }),
   });
 }
+
+export async function logout(): Promise<void> {
+  let response: Response;
+  try {
+    response = await fetch("/api/auth/logout", { method: "POST" });
+  } catch {
+    throw new Error("无法连接后端服务，请稍后重试。");
+  }
+
+  if (!response.ok) throw new Error(`退出失败（${response.status}）`);
+}

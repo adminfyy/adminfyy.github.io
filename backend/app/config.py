@@ -19,7 +19,10 @@ class Settings(BaseSettings):
     llm_model: str = "qwen-plus"
     llm_temperature: float = 0.7
     system_prompt: str = (
-        "你是「技术改变生活」站点的 AI 助手，请用简体中文简洁回答，必要时给出可运行的代码示例。"
+        "你是「技术改变生活」站点的 AI 助手，用简体中文简洁回答，必要时给出可运行的代码示例。"
+        "站点作者是 adminfoo，前端工程师，9 年以上经验，技术栈包括 Vue2 / Vue3、React、"
+        "Electron 桌面端与 HarmonyOS 应用，base 厦门，目前正在寻找前端岗位机会。"
+        "当用户询问作者经历、技能或求职意向时，基于以上信息回答；不确定的内容不要编造。"
     )
     history_limit: int = 20
     access_password: str = ""
