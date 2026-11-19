@@ -11,8 +11,15 @@ const router = new VueRouter({
     {
       path: "/",
       name: "home",
+      alias: "/ai-chat",
+      component: () => import("../views/AiChatView.vue"),
+      meta: { title: "AI Chat" },
+    },
+    {
+      path: "/blog",
+      name: "blog",
       component: HomeView,
-      meta: { title: "首页" },
+      meta: { title: "博客" },
     },
     {
       path: "/about",

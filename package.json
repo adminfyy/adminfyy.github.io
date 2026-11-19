@@ -15,7 +15,9 @@
   "scripts": {
     "doc:dev": "npm --prefix vdocs run dev",
     "doc:build": "npm --prefix vdocs run build",
-    "dev": "vite",
+    "dev": "vite --host 0.0.0.0",
+    "api:setup": "python -m venv backend/.venv && backend\\.venv\\Scripts\\python -m pip install -r backend/requirements.txt",
+    "api:dev": "cd backend && .venv\\Scripts\\python -m uvicorn app.main:app --reload --port 8000",
     "build": "run-p type-check build-only",
     "preview": "vite preview --port 4173",
     "test:unit": "vitest --environment jsdom",

@@ -13,6 +13,14 @@ dist
 dist-ssr
 *.local
 
+# Python backend
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+backend/.env
+backend/data/
+
 /cypress/videos/
 /cypress/screenshots/
 
