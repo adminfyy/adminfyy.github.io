@@ -1,7 +1,7 @@
 from contextlib import asynccontextmanager
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException
+from fastapi import Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
@@ -9,6 +9,7 @@ from fastapi.staticfiles import StaticFiles
 from .config import settings
 from .db import init_db
 from .routers import chat, conversations
+from .security import auth_router, require_auth
 
 FRONTEND_DIR = Path(__file__).resolve().parents[2] / "docs"
 
@@ -28,8 +29,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(chat.router)
-app.include_router(conversations.router)
+app.include_router(auth_router)
+app.include_router(chat.router, dependencies=[Depends(require_auth)])
+app.include_router(conversations.router, dependencies=[Depends(require_auth)])
 
 
 @app.get("/api/health")

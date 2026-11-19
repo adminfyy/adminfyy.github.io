@@ -22,6 +22,7 @@ class Settings(BaseSettings):
         "你是「技术改变生活」站点的 AI 助手，请用简体中文简洁回答，必要时给出可运行的代码示例。"
     )
     history_limit: int = 20
+    access_password: str = ""
     cors_origins: str = (
         "http://localhost:5173,http://localhost:5174,"
         "http://127.0.0.1:5173,http://127.0.0.1:5174"
