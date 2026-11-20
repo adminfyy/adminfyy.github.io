@@ -602,14 +602,41 @@ pre {
 }
 
 @media (max-width: 640px) {
+  .blog-page {
+    gap: 1rem;
+  }
   .hero {
-    padding: 1.5rem;
+    gap: 1rem;
+    padding: 1.25rem;
+    border-radius: var(--radius-lg);
   }
   .hero-metrics {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+  .metric {
+    padding: 0.6rem 0.5rem;
+  }
+  .metric-icon {
+    margin-bottom: 0.2rem;
+    font-size: 1.35rem;
   }
   .hero h1 {
-    font-size: 1.6rem;
+    font-size: 1.55rem;
+  }
+  .description {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  .featured {
+    padding: 1rem;
+    border-radius: var(--radius-md);
+  }
+  .featured h2 {
+    margin-bottom: 0.7rem;
+  }
+  .blog-layout {
+    gap: 1rem;
   }
   .btn {
     width: 100%;

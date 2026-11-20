@@ -1936,11 +1936,19 @@ textarea:focus {
 @media (max-width: 860px) {
   .chat-page {
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
   .chat-header {
     flex-direction: column;
     align-items: flex-start;
+    gap: 0.9rem;
+    padding: 1.1rem 1.15rem;
+    border-radius: var(--radius-lg);
+  }
+
+  .chat-header h1 {
+    font-size: 1.25rem;
   }
 
   .job-card {
@@ -1950,6 +1958,7 @@ textarea:focus {
   .sidebar {
     position: static;
     max-height: none;
+    padding: 0.75rem;
   }
 
   .side-toggle {
@@ -1986,11 +1995,31 @@ textarea:focus {
   }
 
   .message {
-    max-width: 96%;
+    max-width: 94%;
+  }
+
+  .bubble {
+    padding: 0.65rem 0.85rem;
+    font-size: 0.92rem;
   }
 
   .messages {
+    gap: 0.85rem;
     height: min(58vh, 460px);
+    height: min(58dvh, 520px);
+    padding: 1rem 0.9rem;
+  }
+
+  .composer {
+    padding: 0.7rem 0.75rem 0.6rem;
+  }
+
+  .actions > button {
+    min-width: 5rem;
+  }
+
+  .quick-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .composer-hint {
